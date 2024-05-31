@@ -1,4 +1,32 @@
 <resources>
-    <string name="app_name">Capstone</string>
-    <string name="remove_item">Click to remove item\n</string>
+    <string name="app_name" translatable="false">Capstone</string>
+    <string name="remove_item">"Click to remove item "</string>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="chairbackground" translatable="false">chairbackground</string>
+    <string name="AppTitle" translatable="false">Kelas.</string>
+    <string name="welcomeText">Welcome</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="no_telepon">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="ForgotPass">Forgot Password?</string>
+    <string name="Login">Login</string>
+    <string name="belum_memiliki_akun">Dont have account?</string>
+    <string name="Register">Register</string>
+    <string name="sudah_memiliki_akun">Already have account?</string>
+    <string name="profilepicture" translatable="false">ProfilePicture</string>
+    <string name="ProfileUsername" translatable="false">Nina Noni</string>
+    <string name="keranjang">Cart</string>
+    <string name="lamp_background" translatable="false">lamp_background</string>
+    <string name="google_icon" translatable="false">google icon</string>
+    <string name="total_harga">Total Price</string>
+    <string name="harga">Rp 0</string>
+    <string name="beli_sekarang">Buy Now</string>
+    <string name="riwayat_pesanan">History</string>
+    <string name="procduct_image" translatable="false">smaple product image</string>
+    <string name="product_title" translatable="false">Product Title</string>
+    <string name="in_stock">In Stock</string>
 </resources>

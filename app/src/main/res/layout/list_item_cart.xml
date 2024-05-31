@@ -14,12 +14,9 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/procduct_image"
         android:scaleType="centerCrop"
         android:src="@drawable/sample_product_image" />
-
-    <!-- Product Details -->
-
-    <!-- Status Indicator -->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Product Title"
+            android:text="@string/product_title"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -44,7 +41,7 @@
             style="@style/H3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp 0"
+            android:text="@string/harga"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
@@ -62,7 +59,7 @@
         android:gravity="center"
         android:paddingHorizontal="12dp"
         android:paddingVertical="4dp"
-        android:text="In Stock"
+        android:text="@string/in_stock"
         android:textColor="@color/white"
         android:textSize="12sp" />
 

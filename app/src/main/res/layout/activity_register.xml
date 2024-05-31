@@ -7,6 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="372dp"
+        android:contentDescription="@string/chairbackground"
         android:scaleType="centerCrop"
         android:src="@drawable/background_kursi" />
 
@@ -29,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/futura_hv_bt"
-                android:text="Kelas."
+                android:text="@string/AppTitle"
                 android:textColor="#191D20"
                 android:textSize="48sp"
                 android:layout_marginTop="16dp"/>
@@ -49,19 +50,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/futura_hv_bt"
-                    android:text="Selamat Datang!"
+                    android:text="@string/welcomeText"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
                 <EditText
+                    android:autofillHints="username"
                     android:id="@+id/RegUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="Username"
+                    android:hint="@string/username"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
                     android:textSize="16sp" />
@@ -71,10 +74,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:autofillHints="emailAddress"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
@@ -85,16 +89,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:autofillHints="phone"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="No. Telepon"
+                    android:hint="@string/no_telepon"
                     android:inputType="phone"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
                     android:textSize="16sp" />
 
                 <EditText
+                    android:autofillHints="password"
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,7 +108,7 @@
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
@@ -117,22 +123,15 @@
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/C6"
                 android:padding="16dp"
-                android:text="Daftar"
+                android:text="@string/Register"
                 android:textSize="24sp"
                 app:cornerRadius="24dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:orientation="horizontal"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_md_bt"
-                android:text="Sudah memiliki akun? "
+                android:text="@string/sudah_memiliki_akun"
                 android:textColor="#6E7173"
                 android:textSize="12sp" />
 
@@ -141,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_hv_bt"
-                android:text="Masuk"
+                android:text="@string/Login"
                 android:textColor="#191D20"
                 android:textSize="20sp" />
         </LinearLayout>

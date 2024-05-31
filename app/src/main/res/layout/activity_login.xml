@@ -7,6 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="372dp"
+        android:contentDescription="@string/lamp_background"
         android:scaleType="centerCrop"
         android:src="@drawable/background_lampu" />
 
@@ -29,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/futura_hv_bt"
-                android:text="Kelas."
+                android:text="@string/AppTitle"
                 android:textColor="#191D20"
                 android:textSize="48sp"
                 android:layout_marginTop="16dp"/>
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/futura_hv_bt"
-                    android:text="Selamat Datang!"
+                    android:text="@string/welcomeText"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
@@ -58,10 +59,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:autofillHints="username"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="username"
+                    android:hint="@string/username"
+                    android:inputType="text"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
                     android:textSize="16sp" />
@@ -71,10 +74,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:autofillHints="password"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
@@ -88,7 +92,7 @@
                 android:layout_gravity="end"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/futura_md_bt"
-                android:text="Lupa password?"
+                android:text="@string/ForgotPass"
                 android:textColor="@color/C4"
                 android:textSize="12sp" />
 
@@ -100,7 +104,7 @@
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/C6"
                 android:padding="16dp"
-                android:text="Masuk"
+                android:text="@string/Login"
                 android:textColor="#FFFFFFFF"
                 android:textSize="24sp"
                 app:cornerRadius="24dp" />
@@ -117,6 +121,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/google_icon"
                     android:src="@drawable/google_icon" />
             </LinearLayout>
 
@@ -124,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_md_bt"
-                android:text="Belum memiliki akun? "
+                android:text="@string/belum_memiliki_akun"
                 android:textColor="#6E7173"
                 android:textSize="12sp" />
 
@@ -133,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_hv_bt"
-                android:text="Daftar"
+                android:text="@string/Register"
                 android:textColor="#191D20"
                 android:textSize="20sp" />
         </LinearLayout>
