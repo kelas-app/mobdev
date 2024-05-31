@@ -29,4 +29,7 @@
     <string name="procduct_image" translatable="false">smaple product image</string>
     <string name="product_title" translatable="false">Product Title</string>
     <string name="in_stock">In Stock</string>
+    <string name="menjadi_penjual">Menjadi Penjual</string>
+    <string name="alamat">Alamat</string>
+    <string name="OpenGoogleMaps">Buka di Google Maps</string>
 </resources>

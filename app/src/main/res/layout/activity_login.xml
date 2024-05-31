@@ -116,9 +116,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/ivGoogleLogin"
                     android:layout_width="48dp"
+                    android:background=""
                     android:layout_height="48dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/google_icon"
@@ -135,6 +136,8 @@
 
             <TextView
                 android:id="@+id/tvSignUp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_hv_bt"
