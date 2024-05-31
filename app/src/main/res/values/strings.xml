@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Capstone</string>
+    <string name="remove_item">Click to remove item\n</string>
 </resources>

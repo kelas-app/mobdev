@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="372dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_lampu" />
+        android:src="@drawable/background_kursi" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_shape"
                 android:elevation="4dp"
@@ -54,14 +54,42 @@
                     android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/etUsername"
+                    android:id="@+id/RegUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="username"
+                    android:hint="Username"
+                    android:padding="16dp"
+                    android:textColorHint="@color/C3"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/RegEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_shape"
+                    android:backgroundTint="@color/C2"
+                    android:fontFamily="@font/futura_md_bt"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"
+                    android:textColorHint="@color/C3"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/regNomor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_shape"
+                    android:backgroundTint="@color/C2"
+                    android:fontFamily="@font/futura_md_bt"
+                    android:hint="No. Telepon"
+                    android:inputType="phone"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
                     android:textSize="16sp" />
@@ -74,57 +102,37 @@
                     android:background="@drawable/rounded_shape"
                     android:backgroundTint="@color/C2"
                     android:fontFamily="@font/futura_md_bt"
-                    android:hint="password"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:padding="16dp"
                     android:textColorHint="@color/C3"
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/futura_md_bt"
-                android:text="Lupa password?"
-                android:textColor="@color/C4"
-                android:textSize="12sp" />
-
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 style="@style/H1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/C6"
                 android:padding="16dp"
-                android:text="Masuk"
-                android:textColor="#FFFFFFFF"
+                android:text="Daftar"
                 android:textSize="24sp"
-                app:cornerRadius="24dp" />
+                app:cornerRadius="24dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/ivGoogleLogin"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/google_icon" />
-            </LinearLayout>
+                android:orientation="horizontal"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_md_bt"
-                android:text="Belum memiliki akun? "
+                android:text="Sudah memiliki akun? "
                 android:textColor="#6E7173"
                 android:textSize="12sp" />
 
@@ -133,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_hv_bt"
-                android:text="Daftar"
+                android:text="Masuk"
                 android:textColor="#191D20"
                 android:textSize="20sp" />
         </LinearLayout>
