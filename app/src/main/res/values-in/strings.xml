@@ -21,4 +21,11 @@
     <string name="beli_sekarang">Beli Sekarang</string>
     <string name="riwayat_pesanan">Riwayat Pesanan</string>
     <string name="in_stock">In Stock</string>
+    <string name="menjadi_penjual">Become Seller</string>
+    <string name="alamat">Address</string>
+    <string name="OpenGoogleMaps">Open in Google Maps</string>
+    <string name="firstname">Nama Depan</string>
+    <string name="lastname">Nama Belakang</string>
+    <string name="address">Alamat</string>
+    <string name="setting_icon">Pengaturan</string>
 </resources>
