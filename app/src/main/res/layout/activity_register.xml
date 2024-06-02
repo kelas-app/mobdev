@@ -11,7 +11,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background_kursi" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
@@ -55,7 +55,37 @@
                     android:textSize="24sp" />
 
                 <EditText
-                    android:autofillHints="username"
+                    android:autofillHints="Firstname"
+                    android:id="@+id/RegFirstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_shape"
+                    android:backgroundTint="@color/C2"
+                    android:fontFamily="@font/futura_md_bt"
+                    android:hint="@string/firstname"
+                    android:padding="16dp"
+                    android:textColorHint="@color/C3"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:autofillHints="Lastname"
+                    android:id="@+id/RegLastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_shape"
+                    android:backgroundTint="@color/C2"
+                    android:fontFamily="@font/futura_md_bt"
+                    android:hint="@string/lastname"
+                    android:padding="16dp"
+                    android:textColorHint="@color/C3"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:autofillHints="Username"
                     android:id="@+id/RegUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +115,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/regNomor"
+                    android:id="@+id/RegPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -100,8 +130,23 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:autofillHints="password"
-                    android:id="@+id/etPassword"
+                    android:autofillHints="Address"
+                    android:id="@+id/RegAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_shape"
+                    android:backgroundTint="@color/C2"
+                    android:fontFamily="@font/futura_md_bt"
+                    android:hint="@string/address"
+                    android:padding="16dp"
+                    android:textColorHint="@color/C3"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:autofillHints="Password"
+                    android:id="@+id/RegPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -136,7 +181,9 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tvSignUp"
+                android:id="@+id/tvLogin"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_hv_bt"
@@ -144,5 +191,5 @@
                 android:textColor="#191D20"
                 android:textSize="20sp" />
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 </FrameLayout>

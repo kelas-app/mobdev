@@ -8,7 +8,6 @@
     android:layout_marginBottom="8dp"
     android:elevation="2dp">
 
-    <!-- Product Image -->
     <ImageView
         android:id="@+id/ivProductImage"
         android:layout_width="64dp"
@@ -46,7 +45,6 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Remove Button -->
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
