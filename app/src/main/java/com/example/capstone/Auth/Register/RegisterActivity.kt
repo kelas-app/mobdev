@@ -8,12 +8,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstone.Auth.Login.LoginActivity
+import com.example.capstone.Data.Remote.RegisterRequest
 import com.example.capstone.R
-import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
-import java.io.IOException
+import com.example.capstone.Auth.Login.UserViewModel
+import androidx.activity.viewModels
+
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -27,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etAddress: EditText
     private lateinit var btnRegister: Button
     private lateinit var tvLogin: TextView
+
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,8 @@ class RegisterActivity : AppCompatActivity() {
             val address = etAddress.text.toString().trim()
 
             if (firstName.isNotEmpty() && lastName.isNotEmpty() && username.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && password.isNotEmpty() && address.isNotEmpty()) {
-                registerUser(firstName, lastName, username, email, phone, password, address)
+                val registerRequest = RegisterRequest(firstName, lastName, username, email, phone, password, address)
+                viewModel.register(registerRequest)
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
@@ -62,60 +64,30 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        observeRegisterResponse()
     }
 
-    private fun registerUser(firstName: String, lastName: String, username: String, email: String, phone: String, password: String, address: String) {
-        val client = OkHttpClient()
-        val url = "http://161.97.109.65:3000/auth/register"
-
-        val json = JSONObject()
-        json.put("firstname", firstName)
-        json.put("lastname", lastName)
-        json.put("username", username)
-        json.put("email", email)
-        json.put("phone", phone)
-        json.put("password", password)
-        json.put("address", address)
-
-        val body = json.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
-
-        val request = Request.Builder()
-            .url(url)
-            .post(body)
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@RegisterActivity, "Registration Failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    val responseData = response.body?.string()
-                    val jsonResponse = responseData?.let { JSONObject(it) }
-                    val status = jsonResponse?.getString("status")
-
-                    if (status == "success") {
-                        runOnUiThread {
-                            Toast.makeText(this@RegisterActivity, "Registration Successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    } else {
-                        val message = jsonResponse?.getString("message")
-                        runOnUiThread {
-                            Toast.makeText(this@RegisterActivity, "Registration Failed: $message", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+    private fun observeRegisterResponse() {
+        viewModel.registerResponse.observe(this) { response ->
+            if (response != null) {
+                if (response.status == "success") {
+                    Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    runOnUiThread {
-                        Toast.makeText(this@RegisterActivity, "Registration Failed", Toast.LENGTH_SHORT).show()
-                    }
+                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
+
+        viewModel.error.observe(this) { error ->
+            error?.let {
+                Toast.makeText(this, "Registration Failed: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background_kursi" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
@@ -191,5 +191,5 @@
                 android:textColor="#191D20"
                 android:textSize="20sp" />
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </FrameLayout>
