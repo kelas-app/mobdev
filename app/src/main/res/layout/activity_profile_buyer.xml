@@ -23,6 +23,8 @@
             android:layout_marginTop="16dp"
             android:elevation="3dp"
             android:src="@drawable/ic_setting"
+            android:backgroundTint="@color/C6"
+            android:background="@drawable/circle_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/top_navigation"/>
 
