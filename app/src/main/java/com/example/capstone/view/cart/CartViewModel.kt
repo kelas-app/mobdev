@@ -1,5 +1,9 @@
 package com.example.capstone.view.cart
 
-class CartViewModel {
+import androidx.lifecycle.ViewModel
+
+class CartViewModel : ViewModel(){
+
+
 
 }
