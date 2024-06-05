@@ -28,4 +28,8 @@
     <string name="lastname">Nama Belakang</string>
     <string name="address">Alamat</string>
     <string name="setting_icon">Pengaturan</string>
+    <string name="title_home">home\n</string>
+    <string name="title_chart">chart</string>
+    <string name="title_chat">chat</string>
+    <string name="title_profile">profile</string>
 </resources>

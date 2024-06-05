@@ -39,8 +39,23 @@
     <string name="address">Address</string>
     <string name="setting_icon">Setting</string>
     <string name="alamat_sample" translatable="false">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
+
+<!-- Title Untuk Fragment-->
     <string name="title_home">home\n</string>
     <string name="title_chart">chart</string>
     <string name="title_chat">chat</string>
     <string name="title_profile">profile</string>
+<!--    -->
+
+<!--    String untuk bagian Home-->
+    <string name="btn_offering">Grab It Now</string>
+    <string name="title_offering">Available Only Today! </string>
+    <string name="title_categories">Categories </string>
+    <string name="categories1">Chair</string>
+    <string name="categories2">Table</string>
+    <string name="categories3">Cupboard</string>
+    <string name="categories4">Bed</string>
+    <string name="categories5">Fan</string>
+    <string name="recommendation">Recommendation Product</string>
+    <string name="searchbar_hint">Search Here\n</string>
 </resources>
