@@ -39,4 +39,8 @@
     <string name="address">Address</string>
     <string name="setting_icon">Setting</string>
     <string name="alamat_sample" translatable="false">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
+    <string name="title_home">home\n</string>
+    <string name="title_chart">chart</string>
+    <string name="title_chat">chat</string>
+    <string name="title_profile">profile</string>
 </resources>

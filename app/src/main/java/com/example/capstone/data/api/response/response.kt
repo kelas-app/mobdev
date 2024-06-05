@@ -1,4 +1,4 @@
-package com.example.capstone.Data.Remote
+package com.example.capstone.data.api.response
 
 data class RegisterRequest(
     val firstname: String,
