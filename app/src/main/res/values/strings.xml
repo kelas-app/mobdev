@@ -39,8 +39,40 @@
     <string name="address">Address</string>
     <string name="setting_icon">Setting</string>
     <string name="alamat_sample" translatable="false">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
+
+    <!-- Title Untuk Fragment-->
     <string name="title_home">home\n</string>
     <string name="title_chart">chart</string>
     <string name="title_chat">chat</string>
     <string name="title_profile">profile</string>
+    <!--    -->
+
+    <!--    String untuk bagian Home-->
+    <string name="btn_offering">Grab It Now</string>
+    <string name="title_offering">Available Only Today! </string>
+    <string name="title_categories">Categories </string>
+    <string name="categories1">Chair</string>
+    <string name="categories2">Table</string>
+    <string name="categories3">Cupboard</string>
+    <string name="categories4">Bed</string>
+    <string name="categories5">Fan</string>
+    <string name="recommendation">Recommendation Product</string>
+    <string name="searchbar_hint">Search Here\n</string>
+
+    <!--String Untuk Detail-->
+    <string name="title_detail"> Detail Product</string>
+    <string name="detail_goods"> Kursi Belajar</string>
+    <string name="description"> Lorem ipsum dolor sit amet consectetur. Pharetra aliquet mattis tincidunt vestibulum viverra. Proin tortor elit vitae et lacus accumsan. Feugiat sit ullamcorper eget sed id. Dignissim in orci vel varius… </string>
+    <string name="seller_name"> Laurence </string>
+    <string name="star"> 5.0 </string>
+    <string name="reviews"> l 102 Reviews </string>
+    <string name="ask_seller"> Ask Seller</string>
+    <string name="title_review">Review</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="buy_now">Buy now</string>
+    <string name="title_detail_product">detail product</string>
+    <string name="price">Rp 350.000</string>
+    <string name="location">Location</string>
+    <string name="adress">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
+    <string name="title_message">Message</string>
 </resources>

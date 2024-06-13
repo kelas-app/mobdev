@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -41,7 +42,10 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
+
+
 }
 
 dependencies {
@@ -67,5 +71,9 @@ dependencies {
 //    Fragment Dependencies
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+//    ini untuk circle image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
 
 }
