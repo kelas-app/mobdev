@@ -30,7 +30,6 @@
        android:textColor="@color/C6"/>
 
    <ImageView
-
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:src="@drawable/baseline_edit_notifications_24"
@@ -150,6 +149,7 @@
        android:padding="8dp">
 
     <Button
+        android:id="@+id/chair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories1"
@@ -158,6 +158,7 @@
         android:layout_marginEnd="8dp"/>
 
     <Button
+        android:id="@+id/table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories2"
@@ -166,6 +167,7 @@
         android:layout_marginEnd="8dp"/>
 
     <Button
+        android:id="@+id/cupboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories3"
@@ -174,6 +176,7 @@
         android:layout_marginEnd="8dp"/>
 
     <Button
+        android:id="@+id/Bed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories4"
@@ -182,6 +185,7 @@
         android:layout_marginEnd="8dp"/>
 
     <Button
+        android:id="@+id/fan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories5"
@@ -212,7 +216,8 @@
     android:layout_marginTop="10dp"
     app:layout_constraintEnd_toEndOf="@id/offering"
     app:layout_constraintStart_toStartOf="@+id/offering"
-    app:layout_constraintTop_toBottomOf="@+id/title_recommendation"/>
+    app:layout_constraintTop_toBottomOf="@+id/title_recommendation"
+    tools:listitem="@layout/card_rv_home"/>
 
  </androidx.constraintlayout.widget.ConstraintLayout>
 

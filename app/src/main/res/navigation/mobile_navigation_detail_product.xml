@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_detail_product"
+    app:startDestination="@+id/nav_detail_product">
+
+    <fragment
+        android:id="@+id/nav_detail_product"
+        android:name="com.example.capstone.view.home.DetailProductFragment"
+        android:label="@string/title_detail_product"
+        tools:layout="@layout/fragment_detail_product">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.capstone.view.cart.CartFragment"
+        android:label="@string/title_chart"
+        tools:layout="@layout/fragment_cart" />
+
+</navigation>
