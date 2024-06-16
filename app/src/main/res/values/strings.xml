@@ -75,4 +75,8 @@
     <string name="location">Location</string>
     <string name="adress">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
     <string name="title_message">Message</string>
+    <string name="simpan">Simpan</string>
+    <string name="NIK">NIK</string>
+    <string name="login_berhasil">Login Berhasil</string>
+    <string name="passwordLogin">Password</string>
 </resources>

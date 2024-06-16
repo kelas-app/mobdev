@@ -18,26 +18,4 @@ interface AuthApiService {
     suspend fun register(
         @Body registerRequest: RegisterRequest
     ):RegisterResponse
-
-
-
-//    @FormUrlEncoded
-//    @POST("auth/login")
-//    suspend fun login(
-//        @Field ("email") email : String,
-//        @Field ("password") password : String
-//    ):LoginResponse
-//    @FormUrlEncoded
-//    @POST("auth/register")
-//    suspend fun register(
-//        @Field ("firstname") firstname: String,
-//        @Field ("lastname") lastname: String,
-//        @Field ("username") username: String,
-//        @Field ("email") email: String,
-//        @Field ("phone") phone: String,
-//        @Field ("password") password: String,
-//        @Field ("address") address: String
-//    ):RegisterResponse
-
-
 }

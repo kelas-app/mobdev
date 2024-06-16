@@ -1,6 +1,8 @@
 package com.example.capstone.data.api.config
 
 import com.example.capstone.data.api.services.AuthApiService
+import com.example.capstone.data.api.services.ProductApiService
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,5 +21,30 @@ object ApiConfig {
             .client(client)
             .build()
         return retrofit.create(AuthApiService::class.java)
+    }
+
+    fun getAllProductService(token : String): ProductApiService{
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val authInterceptor = Interceptor{ chain ->
+            val req = chain.request()
+            val requestHeaders = req.newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+            chain.proceed(requestHeaders)
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://161.97.109.65:3000/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        return retrofit.create(ProductApiService::class.java)
     }
 }
