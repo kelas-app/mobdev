@@ -1,12 +1,5 @@
 package com.example.capstone.data.api
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
-import com.example.capstone.data.api.services.UserApiService
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-
 //object RetrofitInstance {
 //
 //    private val loggingInterceptor = HttpLoggingInterceptor().apply {
