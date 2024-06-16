@@ -18,9 +18,9 @@
         <activity
             android:name=".view.home.DetailProductActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.home.DetailProduct"
-            android:exported="false" />
+
+        <activity android:name=".view.profile.EditProfileActivity" />
+
         <activity
             android:name=".view.main.MainActivity"
             android:exported="true">

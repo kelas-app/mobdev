@@ -1,12 +1,14 @@
 package com.example.capstone.view.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.capstone.R
 import com.example.capstone.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -28,14 +30,29 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textProfile
-        profileViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        profileViewModel.username.observe(viewLifecycleOwner) { username ->
+            binding.textViewUsername.text = username
         }
 
 //        ini km masukin  function sebelum root ya contoh :
-//        setUpView()
+        setUpView()
         return root
+    }
+
+    private fun setUpView() {
+        // Setup your view components here
+        binding.ibSetting.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnMenjadiPenjual.setOnClickListener {
+            // Handle the click event for becoming a seller button
+        }
+
+        binding.btnBukaMaps.setOnClickListener {
+            // Handle the click event for opening Google Maps button
+        }
     }
 
     override fun onDestroyView() {
