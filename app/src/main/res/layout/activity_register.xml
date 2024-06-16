@@ -86,7 +86,7 @@
 
                 <EditText
                     android:autofillHints="Username"
-                    android:id="@+id/PutUsername"
+                    android:id="@+id/RegUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -100,7 +100,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/PutEmail"
+                    android:id="@+id/RegEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -146,7 +146,7 @@
 
                 <EditText
                     android:autofillHints="Password"
-                    android:id="@+id/PutPassword"
+                    android:id="@+id/RegPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
