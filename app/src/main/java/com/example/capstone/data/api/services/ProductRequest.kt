@@ -5,5 +5,5 @@ data class ProductRequest (
     val description: String,
     val price : Float,
     val category: String,
-    val productImage: String
+    val productImage: List<String>
 )

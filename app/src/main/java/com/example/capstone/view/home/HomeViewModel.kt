@@ -3,11 +3,13 @@ package com.example.capstone.view.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.example.capstone.data.api.response.GetAllProductResponseItem
+import com.example.capstone.data.repository.ProductRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val productRepository: ProductRepository): ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+  fun getStories() : LiveData<List<GetAllProductResponseItem>> {
+      return productRepository.getProducts().asLiveData()
+  }
 }

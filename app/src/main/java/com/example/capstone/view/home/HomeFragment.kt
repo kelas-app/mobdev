@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstone.databinding.FragmentHomeBinding
+import com.example.capstone.di.factory.ViewModelFactory
+import com.example.capstone.view.main.MainViewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -16,15 +20,15 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val viewModel by viewModels<HomeViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        ini untuk memasukkan model nya
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -33,7 +37,18 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        setUpView()
+        setUpRecyclerView()
+
         return root
+    }
+
+    private fun setUpRecyclerView() {
+
+    }
+
+    private fun setUpView() {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroyView() {
