@@ -62,7 +62,7 @@
                 android:src="@drawable/pic_profil" />
 
             <TextView
-                android:id="@+id/textViewName"
+                android:id="@+id/textViewUsernameProfile"
                 style="@style/H2"
                 android:layout_width="233dp"
                 android:layout_height="wrap_content"

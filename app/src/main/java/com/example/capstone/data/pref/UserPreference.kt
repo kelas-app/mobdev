@@ -7,6 +7,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.capstone.data.api.response.Data
+import com.example.capstone.data.api.services.AuthApiService
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import java.util.concurrent.Flow
 import java.util.prefs.Preferences
@@ -27,6 +29,8 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
             preferences[ADDRESS_KEY] = data.address?:""
             preferences[TOKEN_KEY] = data.token
             Log.d("UserPreference", "Saved Preferences")
+            Log.d("UserPreference", "Saved Preferences: ${data.id}")
+
         }
     }
 
@@ -43,6 +47,11 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
                 token = preferences[TOKEN_KEY] ?: ""
             )
         }
+    }
+    suspend fun getUserId(): String {
+        return dataStore.data.map { preferences ->
+            preferences[ID_KEY] ?: ""
+        }.firstOrNull() ?: ""
     }
 
     suspend fun logout(){

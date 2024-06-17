@@ -25,7 +25,7 @@
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
 
-        <activity android:name=".view.profile.EditProfileActivity" />
+        <activity android:name=".view.profile.editprofile.EditProfileActivity" />
 
         <activity
             android:name=".view.main.MainActivity"
