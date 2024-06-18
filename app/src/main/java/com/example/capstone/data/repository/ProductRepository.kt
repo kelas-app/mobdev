@@ -2,6 +2,7 @@ package com.example.capstone.data.repository
 
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.services.ProductApiService
+import com.example.capstone.data.api.services.ProductRequest
 import com.example.capstone.data.pref.UserPreference
 import kotlinx.coroutines.flow.flow
 
@@ -17,8 +18,8 @@ class ProductRepository private constructor(
         ) = ProductRepository(productApiService, userPreference)
     }
 
-    fun getProducts(): kotlinx.coroutines.flow.Flow<List<GetAllProductResponseItem>> = flow{
-        val  products = productApiService.getAllProducts().getAllProductResponse
+    fun getProducts(userId: String): kotlinx.coroutines.flow.Flow<List<GetAllProductResponseItem>> = flow{
+        val  products = productApiService.getAllProducts(ProductRequest(userId))
         emit(products)
     }
 }

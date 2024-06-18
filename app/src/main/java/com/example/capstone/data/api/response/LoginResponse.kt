@@ -25,8 +25,8 @@ data class Data(
 	@field:SerializedName("phone")
 	val phone: String? = null,
 
-	@field:SerializedName("userId")
-	val id: String? = null,
+	@field:SerializedName("_id")
+	val id: String,
 
 	@field:SerializedName("email")
 	val email: String? = null,

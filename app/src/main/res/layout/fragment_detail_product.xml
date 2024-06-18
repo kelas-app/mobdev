@@ -46,7 +46,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/img_detail"
+            android:id="@+id/img_item_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -58,7 +58,7 @@
             android:src="@drawable/detailkursi" />
 
         <TextView
-            android:id="@+id/detailproduct_name"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -67,11 +67,11 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_detail"
+            app:layout_constraintTop_toBottomOf="@+id/img_item_photo"
             android:text="@string/detail_goods" />
 
         <TextView
-            android:id="@+id/category_name"
+            android:id="@+id/category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -79,7 +79,7 @@
             android:fontFamily="@font/futura_hv_bt"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailproduct_name"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             android:text="@string/categories1" />
 
         <TextView
@@ -88,9 +88,9 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/detailproduct_name"
-            app:layout_constraintEnd_toEndOf="@+id/img_detail"
-            app:layout_constraintTop_toTopOf="@+id/detailproduct_name"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="@+id/img_item_photo"
+            app:layout_constraintTop_toTopOf="@+id/title"
             android:text="@string/price" />
 
         <TextView
@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="@id/price"
-            app:layout_constraintStart_toStartOf="@+id/detailproduct_name"
-            app:layout_constraintTop_toBottomOf="@id/category_name"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@id/category"
             android:text="@string/description" />
 
         <de.hdodenhof.circleimageview.CircleImageView

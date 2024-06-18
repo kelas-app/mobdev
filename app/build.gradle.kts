@@ -80,5 +80,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
+//    Glide untuk recyclerview
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
 
 }

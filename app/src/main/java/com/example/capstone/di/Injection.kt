@@ -6,6 +6,7 @@ import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.pref.dataStore
 import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.data.repository.UserRepository
+import com.example.capstone.di.factory.ViewModelFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -22,6 +23,13 @@ object Injection {
         val user = runBlocking {preference.getSession().first()}
         val apiService = ApiConfig.getAllProductService(user.token)
         return ProductRepository.getInstance(preference, apiService)
+    }
+
+    fun provideViewModelFactory(context: Context): ViewModelFactory {
+        val userRepository = provideUserRepository(context)
+        val productRepository = provideProductRepository(context)
+        val userPreference = UserPreference.getInstance(context.dataStore)
+        return ViewModelFactory(userRepository, productRepository, userPreference)
     }
 
 }

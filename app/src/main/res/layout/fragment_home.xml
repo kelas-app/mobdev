@@ -9,6 +9,18 @@
      android:layout_width="match_parent"
      android:layout_height="wrap_content">
 
+  <ProgressBar
+      android:id="@+id/progressbar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:visibility="visible" />
+
   <LinearLayout
       android:id="@+id/linearLayout"
       android:layout_width="match_parent"
@@ -154,8 +166,8 @@
         android:layout_height="wrap_content"
         android:text="@string/categories1"
         android:textColor="@color/white"
-        android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:background="@drawable/bg_button"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/table"
@@ -218,6 +230,8 @@
     app:layout_constraintStart_toStartOf="@+id/offering"
     app:layout_constraintTop_toBottomOf="@+id/title_recommendation"
     tools:listitem="@layout/card_rv_home"/>
+
+
 
  </androidx.constraintlayout.widget.ConstraintLayout>
 
