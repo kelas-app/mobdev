@@ -13,6 +13,19 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:elevation="1dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="8dp"
+            android:layout_margin="12dp" />
+
         <LinearLayout
             android:id="@+id/top_navigation"
             android:layout_width="match_parent"
@@ -30,7 +43,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="@string/profile"
+                android:text="@string/profile_setting"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -90,6 +103,62 @@
             tools:layout_editor_absoluteX="12dp" />
 
         <TextView
+            android:id="@+id/textViewFirstName"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/firstname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <EditText
+            android:id="@+id/PutFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Username"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/firstname"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFirstName"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
+            android:id="@+id/textViewPutLastName"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/lastname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PutFirstName" />
+
+        <EditText
+            android:id="@+id/PutLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Username"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/lastname"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPutLastName"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
             android:id="@+id/textViewUsername"
             style="@style/Bd1"
             android:layout_width="wrap_content"
@@ -98,7 +167,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/username"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/PutLastName" />
 
         <EditText
             android:id="@+id/PutUsername"
@@ -118,59 +187,59 @@
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
-            android:id="@+id/textViewEmail"
+            android:id="@+id/textViewPhone"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:text="@string/email"
+            android:text="@string/no_telepon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PutUsername"
             android:layout_marginTop="12dp" />
 
         <EditText
-            android:id="@+id/PutEmail"
+            android:id="@+id/PutPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:autofillHints="Username"
+            android:autofillHints="Nomor Telepon"
             android:background="@drawable/rounded_shape"
             android:backgroundTint="@color/C2"
             android:fontFamily="@font/futura_md_bt"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
+            android:hint="@string/no_telepon"
+            android:inputType="phone"
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPhone"
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
-            android:id="@+id/textViewPassword"
+            android:id="@+id/textViewAdress"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:text="@string/password"
+            android:text="@string/address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PutEmail"
+            app:layout_constraintTop_toBottomOf="@+id/PutPhone"
             android:layout_marginTop="12dp" />
 
         <EditText
-            android:id="@+id/PutPassword"
+            android:id="@+id/PutAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:autofillHints="Username"
+            android:autofillHints="Address"
             android:background="@drawable/rounded_shape"
             android:backgroundTint="@color/C2"
             android:fontFamily="@font/futura_md_bt"
-            android:hint="@string/password"
-            android:inputType="textPassword"
+            android:hint="@string/address"
+            android:inputType="text"
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPassword"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAdress"
             tools:layout_editor_absoluteX="8dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

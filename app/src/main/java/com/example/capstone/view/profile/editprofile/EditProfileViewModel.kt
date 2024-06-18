@@ -41,10 +41,10 @@ class EditProfileViewModel(
         }
     }
 
-    fun updateUserProfile(userId: String, newUsername: String, newEmail: String, newPassword: String) {
+    fun updateUserProfile(userId: String,newFirstName: String, newLastName: String, newUsername: String, newPhone: String, newAddress: String) {
         viewModelScope.launch {
             try {
-                val userProfile = UserProfile(newUsername, newEmail, newPassword)
+                val userProfile = UserProfile(newFirstName, newLastName, newUsername, newPhone, newAddress)
                 editProfileRepository.updateUserProfile(userId, userProfile)
                 _updateStatus.value = true // If successful without checking isSuccessful
                 Log.d("EditProfileViewModel", "Update profile successful")

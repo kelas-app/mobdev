@@ -15,7 +15,7 @@
         android:id="@+id/nav_cart"
         android:name="com.example.capstone.view.cart.CartFragment"
         android:label="@string/title_chart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/activity_keranjang" />
 
     <fragment
         android:id="@+id/nav_chat"

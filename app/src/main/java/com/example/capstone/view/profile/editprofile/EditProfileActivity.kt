@@ -2,19 +2,18 @@
 
     import android.os.Bundle
     import android.util.Log
+    import android.view.View
     import androidx.appcompat.app.AppCompatActivity
     import androidx.lifecycle.ViewModelProvider
-    import com.example.capstone.data.api.response.Data
     import com.example.capstone.data.pref.UserPreference
     import com.example.capstone.data.pref.dataStore
     import com.example.capstone.databinding.ActivityEditProfileBinding
     import com.example.capstone.di.Injection
     import kotlinx.coroutines.CoroutineScope
     import kotlinx.coroutines.Dispatchers
-    import kotlinx.coroutines.flow.firstOrNull
-    import kotlinx.coroutines.flow.map
     import kotlinx.coroutines.launch
     import kotlinx.coroutines.withContext
+
 
     class EditProfileActivity : AppCompatActivity() {
 
@@ -26,7 +25,7 @@
 
             binding = ActivityEditProfileBinding.inflate(layoutInflater)
             setContentView(binding.root)
-
+            val btnBack = binding.btnBack
             val editProfileRepository = Injection.provideEditProfileRepository(applicationContext)
             val userPreference = UserPreference.getInstance(applicationContext.dataStore)
             editProfileViewModel = ViewModelProvider(this, EditProfileViewModelFactory(userPreference,editProfileRepository)).get(EditProfileViewModel::class.java)
@@ -48,15 +47,19 @@
             }
             // Fetch the username from UserPreference
             editProfileViewModel.fetchUserData()
-
+            btnBack.setOnClickListener { onBackPressed() }
 
 
             // Set up your UI components and handle button clicks or other interactions here
             binding.btnSimpan.setOnClickListener {
+                val newFirstName = binding.PutFirstName.text.toString()
+                val newLastName = binding.PutLastName.text.toString()
                 val newUsername = binding.PutUsername.text.toString()
-                val newEmail = binding.PutEmail.text.toString()
-                val newPassword = binding.PutPassword.text.toString()
-                Log.d("EditProfileActivity", "Save button clicked: $newUsername, $newEmail, $newPassword")
+                val newPhone = binding.PutPhone.text.toString()
+                val newAddress = binding.PutAddress.text.toString()
+
+
+                Log.d("EditProfileActivity", "Save button clicked: $newFirstName, $newLastName, $newUsername, $newPhone, $newAddress")
 
                 CoroutineScope(Dispatchers.Main).launch {
                     val userId = withContext(Dispatchers.IO) {
@@ -65,7 +68,7 @@
                     Log.d("EditProfileActivity", "Fetched User ID: $userId")
 
                     if (userId.isNotEmpty()) {
-                        editProfileViewModel.updateUserProfile(userId, newUsername, newEmail, newPassword)
+                        editProfileViewModel.updateUserProfile(userId, newFirstName, newLastName, newUsername,newPhone,newAddress)
                     } else {
                         Log.d("EditProfileActivity", "User ID is missing")
                     }
