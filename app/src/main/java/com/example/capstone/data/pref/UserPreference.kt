@@ -29,6 +29,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
             preferences[ADDRESS_KEY] = data.address?:""
             preferences[TOKEN_KEY] = data.token
             preferences[ROLE] = data.role
+            preferences[NIK] = data.nik
 
             Log.d("UserPreference", "Saved Preferences")
             Log.d("UserPreference", "Saved Preferences: ${data.id}")
@@ -45,6 +46,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
             preferences[PHONE_KEY] = data.phone ?: ""
             preferences[ADDRESS_KEY] = data.address ?: ""
             preferences[ROLE] = data.role
+            preferences[NIK] = data.nik
 
             Log.d("UserPreference", "Updated Preferences")
         }
@@ -60,7 +62,9 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
                 phone = preferences[PHONE_KEY]?:"",
                 address = preferences[ADDRESS_KEY]?:"",
                 token = preferences[TOKEN_KEY] ?: "",
-                role = preferences[ROLE] ?: ""
+                role = preferences[ROLE] ?: "",
+                nik = preferences[NIK] ?: ""
+
             )
         }
     }
@@ -91,6 +95,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
         private val ADDRESS_KEY = stringPreferencesKey("address")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val ROLE = stringPreferencesKey("role")
+        private val NIK = stringPreferencesKey("nik")
 
         fun getInstance(dataStore: DataStore<androidx.datastore.preferences.core.Preferences>): UserPreference{
             return INSTANCE ?: synchronized(this){

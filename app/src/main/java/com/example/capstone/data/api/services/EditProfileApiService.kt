@@ -1,6 +1,7 @@
 package com.example.capstone.data.api.services
 
 import com.example.capstone.data.api.response.Data
+import com.example.capstone.view.profile.SellerProfile
 import com.example.capstone.view.profile.UserProfile
 import retrofit2.http.Body
 import retrofit2.http.PUT
@@ -13,4 +14,9 @@ interface EditProfileApiService {
         @Body userProfile: UserProfile
     ): Data
 
+    @PUT("users/{userId}")
+    suspend fun updateSellerProfile(
+        @Path("userId") userId: String,
+        @Body sellerProfile: SellerProfile
+    ): Data
 }

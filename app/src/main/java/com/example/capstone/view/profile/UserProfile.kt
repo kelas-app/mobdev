@@ -7,3 +7,8 @@ data class UserProfile(
     val phone: String,
     val address: String
 )
+
+data class SellerProfile(
+    val role: String,
+    val nik: String
+)

@@ -41,5 +41,8 @@ data class Data(
 	val token: String,
 
 	@field:SerializedName("role")
-	val role: String
+	val role: String,
+
+	@field:SerializedName("nik")
+	val nik: String
 )
