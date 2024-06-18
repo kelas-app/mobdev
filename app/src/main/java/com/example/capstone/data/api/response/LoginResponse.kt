@@ -38,5 +38,8 @@ data class Data(
 	val username: String? = null,
 
 	@field:SerializedName("token")
-	val token: String
+	val token: String,
+
+	@field:SerializedName("role")
+	val role: String
 )

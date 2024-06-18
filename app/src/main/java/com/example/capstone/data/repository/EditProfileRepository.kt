@@ -1,5 +1,6 @@
 package com.example.capstone.data.repository
 
+import com.example.capstone.data.api.response.Data
 import com.example.capstone.data.api.services.AuthApiService
 import com.example.capstone.data.api.services.EditProfileApiService
 import com.example.capstone.data.pref.UserPreference
@@ -10,10 +11,8 @@ class EditProfileRepository(
     private val userPreference: UserPreference
 ) {
 
-    suspend fun updateUserProfile(userId: String, userProfile: UserProfile) {
-        // Di sini Anda melakukan pemanggilan ke metode update di ApiService
-        // Pastikan Anda mengatur token atau otorisasi yang diperlukan dalam interceptor Retrofit
-        editProfileApiService.updateUserProfile(userId, userProfile)
+    suspend fun updateUserProfile(userId: String, userProfile: UserProfile): Data {
+        return editProfileApiService.updateUserProfile(userId, userProfile)
     }
 
 

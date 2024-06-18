@@ -2,7 +2,6 @@
 
     import android.os.Bundle
     import android.util.Log
-    import android.view.View
     import androidx.appcompat.app.AppCompatActivity
     import androidx.lifecycle.ViewModelProvider
     import com.example.capstone.data.pref.UserPreference

@@ -28,12 +28,27 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
             preferences[PHONE_KEY] = data.phone?:""
             preferences[ADDRESS_KEY] = data.address?:""
             preferences[TOKEN_KEY] = data.token
+            preferences[ROLE] = data.role
+
             Log.d("UserPreference", "Saved Preferences")
             Log.d("UserPreference", "Saved Preferences: ${data.id}")
 
         }
     }
+    suspend fun updateUser(data: Data) {
+        dataStore.edit { preferences ->
+            preferences[ID_KEY] = data.id ?: ""
+            preferences[FIRSTNAME_KEY] = data.firstname ?: ""
+            preferences[LASTNAME_KEY] = data.lastname ?: ""
+            preferences[USERNAME_KEY] = data.username ?: ""
+            preferences[EMAIL_KEY] = data.email ?: ""
+            preferences[PHONE_KEY] = data.phone ?: ""
+            preferences[ADDRESS_KEY] = data.address ?: ""
+            preferences[ROLE] = data.role
 
+            Log.d("UserPreference", "Updated Preferences")
+        }
+    }
     fun getSession(): kotlinx.coroutines.flow.Flow<Data> {
         return dataStore.data.map { preferences ->
             Data(
@@ -44,7 +59,8 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
                 email = preferences[EMAIL_KEY]?:"",
                 phone = preferences[PHONE_KEY]?:"",
                 address = preferences[ADDRESS_KEY]?:"",
-                token = preferences[TOKEN_KEY] ?: ""
+                token = preferences[TOKEN_KEY] ?: "",
+                role = preferences[ROLE] ?: ""
             )
         }
     }
@@ -74,6 +90,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
         private val PHONE_KEY = stringPreferencesKey("phone")
         private val ADDRESS_KEY = stringPreferencesKey("address")
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val ROLE = stringPreferencesKey("role")
 
         fun getInstance(dataStore: DataStore<androidx.datastore.preferences.core.Preferences>): UserPreference{
             return INSTANCE ?: synchronized(this){
