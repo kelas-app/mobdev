@@ -29,6 +29,5 @@ class ProductRepository(private val apiService: ProductApiService) {
     suspend fun getDashboardData(): DashboardResponse {
         return apiService.getDashboardData()
     }
-    // Add more methods as needed based on your API service endpoints
 
 }
