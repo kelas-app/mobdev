@@ -8,7 +8,6 @@ data class RegisterResponse(
 
 	@field:SerializedName("status")
 	val status: String? = null,
-
 )
 
 
