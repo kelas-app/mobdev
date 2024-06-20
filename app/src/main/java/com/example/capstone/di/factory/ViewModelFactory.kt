@@ -8,6 +8,7 @@ import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.data.repository.UserRepository
 import com.example.capstone.di.Injection
+import com.example.capstone.view.home.DetailProductBaruViewModel
 import com.example.capstone.view.home.HomeViewModel
 import com.example.capstone.view.main.MainViewModel
 import java.lang.IllegalArgumentException
@@ -23,6 +24,10 @@ class ViewModelFactory (private val userRepository: UserRepository , private val
 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(productRepository, userPreference) as T
+            }
+
+            modelClass.isAssignableFrom(DetailProductBaruViewModel::class.java) -> {
+                DetailProductBaruViewModel(productRepository) as T
             }
 
             else -> throw IllegalArgumentException("unknown ViewModel Class: " + modelClass.name)

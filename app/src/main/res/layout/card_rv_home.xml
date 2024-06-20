@@ -32,11 +32,12 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_hv_bt"
             android:text="Kursi Belajar"
             android:textSize="12sp"
+            android:maxLines="1"
             android:textStyle="bold"
             android:layout_marginStart="5dp"
             android:layout_marginTop="3dp"
@@ -70,13 +71,11 @@
             tools:ignore="SmallSp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:paddingTop="5dp"
+            android:layout_width="37dp"
+            android:layout_height="35dp"
             android:src="@drawable/minicart"
-            card_view:layout_constraintBottom_toBottomOf="@+id/price"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

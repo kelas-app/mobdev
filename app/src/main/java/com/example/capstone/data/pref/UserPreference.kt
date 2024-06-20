@@ -4,9 +4,11 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.capstone.data.api.response.Data
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.util.concurrent.Flow
 import java.util.prefs.Preferences
@@ -26,6 +28,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
             preferences[PHONE_KEY] = data.phone?:""
             preferences[ADDRESS_KEY] = data.address?:""
             preferences[TOKEN_KEY] = data.token
+            preferences[EXPIRATION_TOKEN_KEY] = System.currentTimeMillis() + 60 * 60 * 1000
             Log.d("UserPreference", "Saved Preferences")
         }
     }
@@ -52,6 +55,14 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
         }
     }
 
+    suspend fun isTokenExpired():Boolean {
+        val currentTime = System.currentTimeMillis()
+        val expirationTime = dataStore.data.map { preferences ->
+            preferences[EXPIRATION_TOKEN_KEY] ?: 0L
+        }.first() // collect from flow value
+        return currentTime > expirationTime
+    }
+
 
     companion object{
         @Volatile
@@ -65,6 +76,7 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
         private val PHONE_KEY = stringPreferencesKey("phone")
         private val ADDRESS_KEY = stringPreferencesKey("address")
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val EXPIRATION_TOKEN_KEY = longPreferencesKey("expiration_time")
 
         fun getInstance(dataStore: DataStore<androidx.datastore.preferences.core.Preferences>): UserPreference{
             return INSTANCE ?: synchronized(this){

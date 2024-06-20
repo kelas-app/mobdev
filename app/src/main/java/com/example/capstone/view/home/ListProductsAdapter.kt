@@ -1,5 +1,7 @@
 package com.example.capstone.view.home
 
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +10,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone.R
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 
-class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAdapter.ListViewHolder > (StoryDiffCallback()){
+class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAdapter.ListViewHolder>(DIFF_CALLBACK){
     val TAG = "ListProductsAdapter"
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title : TextView = itemView.findViewById(R.id.title)
         val category : TextView = itemView.findViewById(R.id.category)
         val price : TextView = itemView.findViewById(R.id.price)
-        val description : TextView = itemView.findViewById(R.id.description)
         val imgPhoto : ImageView = itemView.findViewById(R.id.img_item_photo)
     }
 
@@ -36,19 +38,35 @@ class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAd
         holder.title.text = product.name
         holder.category.text = product.category
         holder.price.text = product.price?.toString()?:"NA"
-        holder.description.text = product.description
+
+//        Glide.with(holder.itemView.context)
+//                .load(product.productImage[0])
+//                .into(holder.imgPhoto)
         Glide.with(holder.itemView.context)
-            .load(product.productImage)
+            .load(product.productImage?.get(0))
+            .placeholder(R.drawable.detailkursi) // Default image while loading
+            .error(R.drawable.detailkursi) // Default image if there is an error or null
             .into(holder.imgPhoto)
 
-    }
-    class StoryDiffCallback : DiffUtil.ItemCallback<GetAllProductResponseItem>() {
-        override fun areItemsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
-            return oldItem._id == newItem._id
+
+        holder.itemView.setOnClickListener {
+            val intentDetail = Intent(holder.itemView.context,DetailProductBaruActivity::class.java).apply {
+                putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_ID, product._id)
+            }
+            holder.itemView.context.startActivity(intentDetail)
         }
 
-        override fun areContentsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
-            return oldItem == newItem
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GetAllProductResponseItem>() {
+            override fun areItemsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
+                return oldItem._id == newItem._id
+            }
         }
     }
 }

@@ -83,5 +83,7 @@ dependencies {
 //    Glide untuk recyclerview
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation(libs.androidx.paging.runtime.ktx)
+
 
 }
