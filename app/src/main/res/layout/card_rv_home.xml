@@ -72,7 +72,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:paddingTop="5dp"
+            android:paddingTop="5dp"
             android:src="@drawable/minicart"
             card_view:layout_constraintBottom_toBottomOf="@+id/price"
             card_view:layout_constraintEnd_toEndOf="parent"

@@ -26,7 +26,7 @@
     <string name="harga">Rp 0</string>
     <string name="beli_sekarang">Buy Now</string>
     <string name="riwayat_pesanan">History</string>
-    <string name="procduct_image" translatable="false">smaple product image</string>
+    <string name="procduct_image" translatable="false">sample product image</string>
     <string name="product_title" translatable="false">Product Title</string>
     <string name="in_stock">In Stock</string>
     <string name="menjadi_penjual">Menjadi Penjual</string>
@@ -75,6 +75,26 @@
     <string name="location">Location</string>
     <string name="adress">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
     <string name="title_message">Message</string>
+    <string name="simpan">Simpan</string>
+    <string name="NIK">NIK</string>
+    <string name="login_berhasil">Login Berhasil</string>
     <string name="passwordLogin">Password</string>
-    <string name="login_berhasil">Login Berhasil!</string>
+    <string name="back">kembali</string>
+    <string name="profile_setting">Pengaturan Profil</string>
+    <string name="become_seller">Menjadi Penjual</string>
+    <string name="enter_nik">Masukkan NIK</string>
+    <string name="phone">No. Telepon</string>
+    <string name="title_seller_profile">seller profile</string>
+    <string name="buyer_tab">Buyer</string>
+    <string name="seller_tab">Seller</string>
+    <string name="selesai">Selesai</string>
+    <string name="diproses">Diproses</string>
+    <string name="dijual">Dijual</string>
+    <string name="jual_barang">Jual Barang</string>
+    <string name="tambah_produk">Tambah Produk</string>
+    <string name="harga_barang">Harga Barang</string>
+    <string name="deskripsi_barang">Deskripsi Barang</string>
+    <string name="jenis_barang">Jenis Barang</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="tambah_gambar">Tambah Gambar</string>
 </resources>

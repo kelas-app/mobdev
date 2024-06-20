@@ -3,10 +3,43 @@ package com.example.capstone.view.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import com.example.capstone.data.pref.UserPreference
 
-class ProfileViewModel : ViewModel() {
-    val _text = MutableLiveData<String>().apply{
-        value = "This is Profile Fragment"
+
+
+class ProfileViewModel(private val userPreference: UserPreference) : ViewModel() {
+    // LiveData for username
+    private val _username = MutableLiveData<String>().apply {
+        value = "default"
     }
-    val text : LiveData<String> = _text
+    val username: LiveData<String> = _username
+
+    private val _role = MutableLiveData<String>().apply {
+        value = "buyer"
+    }
+    val role: LiveData<String> = _role
+
+
+    // Function to fetch username from API using stored ID
+    fun fetchUsername() {
+        viewModelScope.launch {
+            userPreference.getSession().collect { data ->
+                _username.value = data.username
+            }
+        }
+    }
+    fun fetchUserRole() {
+        viewModelScope.launch {
+            userPreference.getSession().collect { data ->
+                _role.value = data.role
+            }
+        }
+    }
+
+    // Function to update username
+    fun updateUsername(newUsername: String) {
+        _username.value = newUsername
+    }
 }

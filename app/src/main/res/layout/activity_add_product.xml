@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.profile.sellerprofile.sellertab.addproduct.ProductActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:elevation="1dp"
+            android:background="@android:color/transparent"
+            android:tint="@color/C6"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="8dp"
+            android:layout_margin="12dp" />
+
+        <LinearLayout
+            android:id="@+id/top_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewProfil"
+                style="@style/H2"
+                android:layout_width="0dp"
+                android:layout_height="77dp"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/tambah_produk"
+                android:textAlignment="center"
+                android:textColor="@color/C6" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/img_prudok"
+            android:layout_width="289dp"
+            android:layout_height="239dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/detailkursi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_navigation" />
+
+        <Button
+            android:id="@+id/btnTambahGambar"
+            style="@style/H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/P1"
+            android:elevation="1dp"
+            android:padding="12dp"
+            android:text="@string/tambah_gambar"
+            android:textColor="@color/black"
+            app:cornerRadius="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_prudok" />
+
+        <TextView
+            android:id="@+id/tvNamaBarang"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/nama_barang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTambahGambar" />
+
+        <EditText
+            android:id="@+id/PutNamaBarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Username"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/nama_barang"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamaBarang"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
+            android:id="@+id/tvJenisBarang"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/jenis_barang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PutNamaBarang" />
+
+        <EditText
+            android:id="@+id/PutJenisBarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Username"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/jenis_barang"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvJenisBarang"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/deskripsi_barang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PutJenisBarang" />
+
+        <EditText
+            android:id="@+id/PutDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Username"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/deskripsi_barang"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
+            android:id="@+id/tvHargaBarang"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/harga_barang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PutDescription"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/PutPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:autofillHints="Nomor Telepon"
+            android:background="@drawable/rounded_shape"
+            android:backgroundTint="@color/C2"
+            android:fontFamily="@font/futura_md_bt"
+            android:hint="@string/harga_barang"
+            android:inputType="phone"
+            android:padding="16dp"
+            android:textColorHint="@color/C3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvHargaBarang"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <Button
+            android:id="@+id/btnTambahProduk"
+            style="@style/H2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/P1"
+            android:padding="12dp"
+            android:text="@string/jual_barang"
+            android:textColor="@color/black"
+            app:cornerRadius="24dp"
+            android:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="12dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

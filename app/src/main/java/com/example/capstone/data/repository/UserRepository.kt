@@ -3,10 +3,13 @@ package com.example.capstone.data.repository
 import com.example.capstone.data.api.response.Data
 import com.example.capstone.data.api.response.LoginResponse
 import com.example.capstone.data.api.response.RegisterResponse
+import com.example.capstone.view.profile.UserProfile
+import com.example.capstone.data.api.response.UserProfileResponse
 import com.example.capstone.data.api.services.AuthApiService
 import com.example.capstone.data.api.services.LoginRequest
 import com.example.capstone.data.api.services.RegisterRequest
 import com.example.capstone.data.pref.UserPreference
+import retrofit2.Response
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -42,8 +45,6 @@ class UserRepository private constructor(
     suspend fun logout(){
         userPreference.logout()
     }
-
-
     companion object{
         @Volatile
         private var instance: UserRepository?= null

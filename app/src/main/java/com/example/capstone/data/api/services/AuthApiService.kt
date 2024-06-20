@@ -2,10 +2,14 @@ package com.example.capstone.data.api.services
 
 import com.example.capstone.data.api.response.LoginResponse
 import com.example.capstone.data.api.response.RegisterResponse
+import com.example.capstone.view.profile.UserProfile
+import com.example.capstone.data.api.response.UserProfileResponse
+import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+
 
 interface AuthApiService {
 
@@ -19,25 +23,11 @@ interface AuthApiService {
         @Body registerRequest: RegisterRequest
     ):RegisterResponse
 
-
-
-//    @FormUrlEncoded
-//    @POST("auth/login")
-//    suspend fun login(
-//        @Field ("email") email : String,
-//        @Field ("password") password : String
-//    ):LoginResponse
-//    @FormUrlEncoded
-//    @POST("auth/register")
-//    suspend fun register(
-//        @Field ("firstname") firstname: String,
-//        @Field ("lastname") lastname: String,
-//        @Field ("username") username: String,
-//        @Field ("email") email: String,
-//        @Field ("phone") phone: String,
-//        @Field ("password") password: String,
-//        @Field ("address") address: String
-//    ):RegisterResponse
+    @PUT("users/{id}")
+    suspend fun updateUserProfile(
+        @Path("id") userId: String,
+        @Body userProfile: UserProfile
+    ): Response<UserProfileResponse>
 
 
 }
