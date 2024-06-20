@@ -24,6 +24,7 @@ class SellerTabFragment : Fragment() {
     private lateinit var rvSellerProfile: RecyclerView
     private lateinit var dijualButton: Button
     private lateinit var selesaiButton: Button
+    private lateinit var btnProses: Button
     private lateinit var btnJualBarang: Button
 
     override fun onCreateView(
@@ -34,7 +35,8 @@ class SellerTabFragment : Fragment() {
         rvSellerProfile = view.findViewById(R.id.rvSellerProfile)
         dijualButton = view.findViewById(R.id.btnDijual)
         selesaiButton = view.findViewById(R.id.btnSelesai)
-        btnJualBarang=view.findViewById(R.id.btnJualBarang)
+        btnProses = view.findViewById(R.id.btnProses)
+        btnJualBarang = view.findViewById(R.id.btnJualBarang)
 
         // Initialize ViewModel
         sellerViewModel = ViewModelProvider(this).get(SellerViewModel::class.java)
@@ -53,18 +55,19 @@ class SellerTabFragment : Fragment() {
                 Log.d("SellerTabFragment", "Observed items: $it")
                 // Update RecyclerView with new data
                 sellerAdapter.setItems(it, showCompleted = false)
-
             }
         })
 
         dijualButton.setOnClickListener {
-            sellerViewModel.filterItems(showCompleted = false)
-            sellerAdapter.setItems(sellerAdapter.items, showCompleted = false)
+            sellerViewModel.showDijualItems()
         }
 
         selesaiButton.setOnClickListener {
-            sellerViewModel.filterItems(showCompleted = true)
-            sellerAdapter.setItems(sellerAdapter.items, showCompleted = true)
+            sellerViewModel.showSelesaiItems()
+        }
+
+        btnProses.setOnClickListener {
+            sellerViewModel.showDiprosesItems()
         }
 
         btnJualBarang.setOnClickListener {
@@ -73,9 +76,9 @@ class SellerTabFragment : Fragment() {
             startActivity(intent)
         }
 
-
         return view
     }
+
     private fun calculateNoOfColumns(context: Context, itemWidth: Float): Int {
         val displayMetrics = context.resources.displayMetrics
         val screenWidthPx = displayMetrics.widthPixels

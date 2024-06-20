@@ -69,6 +69,7 @@ class ProductActivity : AppCompatActivity() {
             }
         }
 
+
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }

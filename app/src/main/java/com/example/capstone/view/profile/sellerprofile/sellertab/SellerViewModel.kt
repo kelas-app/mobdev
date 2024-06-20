@@ -14,67 +14,75 @@ import com.example.capstone.di.Injection
 import kotlinx.coroutines.launch
 
 class SellerViewModel(application: Application) : AndroidViewModel(application) {
-    private val allItems = mutableListOf<ProductRequest>()
 
     private val productRepository = Injection.provideProductRepository(application.applicationContext)
 
     private val _sellerItems = MutableLiveData<List<ProductRequest>>()
-    private val userPreference = UserPreference.getInstance(application.applicationContext.dataStore)
 
     val sellerItems: LiveData<List<ProductRequest>>
         get() = _sellerItems
 
     init {
-        // Load initial data
-        loadSellerItems()
+        loadDashboardItems()
     }
 
-    private fun loadSellerItems() {
+    private fun loadDashboardItems() {
         viewModelScope.launch {
             try {
-                val userId = userPreference.getUserId()
-                val items = productRepository.getAllProducts()
-                val productRequests = items.map { mapToProductRequest(it) }
-                val filteredItems = productRequests.filter { it.sellerId == userId }
-                allItems.clear()
-                allItems.addAll(filteredItems)
-                _sellerItems.value = allItems
-                Log.d("SellerViewModel", "Fetched and transformed items: $filteredItems")
+                val dashboardData = productRepository.getDashboardData()
+                _sellerItems.value = dashboardData.dijual // Default to showing "dijual"
+                Log.d("SellerViewModel", "Fetched dashboard data")
             } catch (e: Exception) {
-                // Handle error fetching data
                 e.printStackTrace()
-                Log.e("SellerViewModel", "Error fetching data: ${e.message}")
+                Log.e("SellerViewModel", "Error fetching dashboard data: ${e.message}")
             }
         }
     }
 
-    fun filterItems(showCompleted: Boolean) {
-        val filteredItems = allItems.filter { it.isCompleted == showCompleted }
-        _sellerItems.value = filteredItems
-        Log.d("SellerViewModel", "Filtered items: ${_sellerItems.value}")
+    fun showDijualItems() {
+        viewModelScope.launch {
+            try {
+                val dashboardData = productRepository.getDashboardData()
+                _sellerItems.value = dashboardData.dijual
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("SellerViewModel", "Error fetching dijual items: ${e.message}")
+            }
+        }
     }
 
-    private fun mapToProductRequest(responseItem: GetAllProductResponseItem?): ProductRequest {
-        if (responseItem != null) {
-            return ProductRequest(
-                name = responseItem.name ?: "",
-                description = responseItem.description ?: "",
-                price = responseItem.price?.toString()?.toFloatOrNull() ?: 0.0f,
-                category = responseItem.category ?: "",
-                productImage = responseItem.productImage?.filterNotNull() ?: emptyList(),
-                isVisible = responseItem.isVisible ?: false,
-                isCompleted = responseItem.isCompleted ?: false,
-                sellerId = responseItem.sellerId ?: ""
-            )
+    fun showDiprosesItems() {
+        viewModelScope.launch {
+            try {
+                val dashboardData = productRepository.getDashboardData()
+                _sellerItems.value = dashboardData.diproses.map {
+                    ProductRequest(
+                        name = "Order ID: ${it._id}",
+                        description = "Total Price: ${it.totalPrice}",
+                        price = it.totalPrice,
+                        category = "Order Status: ${it.status}",
+                        productImage = emptyList(),
+                        isVisible = true,
+                        isCompleted = it.status == "Selesai",
+                        sellerId = it.sellerId
+                    )
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("SellerViewModel", "Error fetching diproses items: ${e.message}")
+            }
         }
-        return ProductRequest(
-            name = "",
-            description = "",
-            price = 0.0f,
-            category = "",
-            productImage = emptyList(),
-            isVisible =false,
-            isCompleted = false,
-            sellerId = "")
+    }
+
+    fun showSelesaiItems() {
+        viewModelScope.launch {
+            try {
+                val dashboardData = productRepository.getDashboardData()
+                _sellerItems.value = dashboardData.selesai
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("SellerViewModel", "Error fetching selesai items: ${e.message}")
+            }
+        }
     }
 }
