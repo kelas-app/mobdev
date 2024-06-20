@@ -3,18 +3,13 @@ package com.example.capstone.data.repository
 import com.example.capstone.data.api.response.ConversationsResponseItem
 import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
-import com.example.capstone.data.api.response.GetCategoryProductResponse
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
-import com.example.capstone.data.api.response.LoginResponse
 import com.example.capstone.data.api.response.DashboardResponse
 import com.example.capstone.data.api.response.UploadNewProductResponse
-import com.example.capstone.data.api.services.AddProduct
 import com.example.capstone.data.api.services.ConversationsRequest
-import com.example.capstone.data.api.services.LoginRequest
 import com.example.capstone.data.api.services.ProductApiService
-import com.example.capstone.data.api.services.Recommend
-import com.example.capstone.data.api.services.ProductRequest
+import com.example.capstone.data.api.services.ProductRequestRecommend
 import com.example.capstone.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -35,9 +30,9 @@ class ProductRepository private constructor(
         ) = ProductRepository(productApiService, userPreference)
     }
     
-    suspend fun getAllProducts(): List<GetAllProductResponseItem> {
-        return apiService.getAllProducts()
-    }
+    /*suspend fun getAllProducts(): List<GetAllProductResponseItem> {
+        return productApiService.getAllProducts()
+    }*/
 
     fun getProducts(userId: String): kotlinx.coroutines.flow.Flow<Result<List<GetAllProductResponseItem>>> = flow {
         if (userPreference.isTokenExpired()) {
@@ -102,7 +97,7 @@ class ProductRepository private constructor(
         val categoryPart = RequestBody.create("text/plain".toMediaTypeOrNull(), category)
         val imagePart = MultipartBody.Part.createFormData("productImage", productImage.name, RequestBody.create("image/*".toMediaTypeOrNull(), productImage))
 
-        return apiService.uploadNewProduct(namePart, descriptionPart, pricePart, categoryPart, imagePart)
+        return productApiService.uploadNewProduct(namePart, descriptionPart, pricePart, categoryPart, imagePart)
     }
     
     fun getAllChat (productId:String): Flow<Result<List<ConversationsResponseItem>>> = flow {
@@ -134,7 +129,7 @@ class ProductRepository private constructor(
     }
 
     suspend fun getDashboardData(): DashboardResponse {
-        return apiService.getDashboardData()
+        return productApiService.getDashboardData()
     }
     
     suspend fun logout(){

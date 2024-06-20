@@ -2,13 +2,10 @@ package com.example.capstone.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GetAllProductResponse(
-
-	@field:SerializedName("GetAllProductResponse")
-	val getAllProductResponse: List<GetAllProductResponseItem?>? = null
-)
-
 data class GetAllProductResponseItem(
+
+	@field:SerializedName("_id")
+	val _id: String? = null,
 
 	@field:SerializedName("sellerId")
 	val sellerId: String? = null,
@@ -17,7 +14,7 @@ data class GetAllProductResponseItem(
 	val productImage: List<String?>? = null,
 
 	@field:SerializedName("price")
-	val price: Any? = null,
+	val price: Float? = null,
 
 	@field:SerializedName("name")
 	val name: String? = null,
@@ -29,8 +26,8 @@ data class GetAllProductResponseItem(
 	val category: String? = null,
 
 	@field:SerializedName("isVisible")
-	val isVisible: Boolean? = null,
+	val isVisible: Boolean,
 
 	@field:SerializedName("isCompleted")
-	val isCompleted: Boolean? = null
+	val isCompleted: Boolean
 )

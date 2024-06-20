@@ -45,6 +45,7 @@ interface ProductApiService {
     suspend fun createConversations(
         @Body request: ConversationsRequest
     ): List<ConversationsResponseItem>
+
     @Multipart
     @POST("products")
     suspend fun uploadNewProduct(
