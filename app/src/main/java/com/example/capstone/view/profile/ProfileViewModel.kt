@@ -16,12 +16,24 @@ class ProfileViewModel(private val userPreference: UserPreference) : ViewModel()
     }
     val username: LiveData<String> = _username
 
+    private val _role = MutableLiveData<String>().apply {
+        value = "buyer"
+    }
+    val role: LiveData<String> = _role
+
 
     // Function to fetch username from API using stored ID
     fun fetchUsername() {
         viewModelScope.launch {
             userPreference.getSession().collect { data ->
                 _username.value = data.username
+            }
+        }
+    }
+    fun fetchUserRole() {
+        viewModelScope.launch {
+            userPreference.getSession().collect { data ->
+                _role.value = data.role
             }
         }
     }

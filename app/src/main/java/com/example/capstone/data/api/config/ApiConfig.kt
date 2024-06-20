@@ -17,7 +17,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://161.97.109.65:3000/api/")
+            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -41,7 +41,7 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://161.97.109.65:3000/api/")
+            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -63,7 +63,7 @@ object ApiConfig {
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://161.97.109.65:3000/api/") // Sesuaikan dengan URL API untuk edit profil
+            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/") // Sesuaikan dengan URL API untuk edit profil
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

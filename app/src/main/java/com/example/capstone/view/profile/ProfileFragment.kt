@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.capstone.R
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.pref.dataStore
 import com.example.capstone.databinding.FragmentProfileBinding
-import com.example.capstone.view.login.LoginActivity
 import com.example.capstone.view.profile.editprofile.EditProfileActivity
 import com.example.capstone.view.profile.menjadipenjual.BecomeSellerActivity
 import kotlinx.coroutines.launch
@@ -27,15 +28,12 @@ class ProfileFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         userPreference = UserPreference.getInstance(requireContext().dataStore)
 
-//        ini untuk memasukkan model nya
         val profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userPreference)).get(ProfileViewModel::class.java)
-
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -44,10 +42,23 @@ class ProfileFragment : Fragment() {
             binding.textViewUsername.text = username
         }
 
-//        ini km masukin  function sebelum root ya contoh :
-        profileViewModel.fetchUsername()
-        setUpView()
         return root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userPreference)).get(ProfileViewModel::class.java)
+
+        profileViewModel.role.observe(viewLifecycleOwner) { role ->
+            if (role == "seller") {
+                // Navigate to SellerProfileFragment if user is seller
+                navigateToSellerProfile()
+            }
+        }
+
+        profileViewModel.fetchUsername()
+        profileViewModel.fetchUserRole()
+        setUpView()
     }
 
     private fun setUpView() {
@@ -76,7 +87,6 @@ class ProfileFragment : Fragment() {
                     startActivity(intent)
                 }
                 1 -> {
-                    // Handle logout logic here
                     logout()
                 }
             }
@@ -86,11 +96,11 @@ class ProfileFragment : Fragment() {
     private fun logout() {
         lifecycleScope.launch {
             userPreference.logout()
-            // Redirect to login screen after logout
-            /*val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)*/
         }
+    }
+    private fun navigateToSellerProfile() {
+        // Navigasi menggunakan findNavController
+        findNavController().navigate(R.id.action_nav_profile_to_nav_seller_profile)
     }
     override fun onDestroyView() {
         super.onDestroyView()

@@ -25,6 +25,8 @@
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
 
+        <activity android:name=".view.profile.sellerprofile.sellertab.addproduct.ProductActivity" />
+
         <activity android:name=".view.profile.editprofile.EditProfileActivity" />
 
         <activity android:name=".view.profile.menjadipenjual.BecomeSellerActivity" />

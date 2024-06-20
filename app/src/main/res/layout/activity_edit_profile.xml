@@ -103,7 +103,7 @@
             tools:layout_editor_absoluteX="12dp" />
 
         <TextView
-            android:id="@+id/textViewFirstName"
+            android:id="@+id/tvFirstName"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,11 +127,11 @@
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewFirstName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFirstName"
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
-            android:id="@+id/textViewPutLastName"
+            android:id="@+id/tvLastName"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,11 +155,11 @@
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPutLastName"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastName"
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
-            android:id="@+id/textViewUsername"
+            android:id="@+id/tvUsername"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -183,11 +183,11 @@
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUsername"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView
-            android:id="@+id/textViewPhone"
+            android:id="@+id/tvPhone"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
             android:padding="16dp"
             android:textColorHint="@color/C3"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPhone"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhone"
             tools:layout_editor_absoluteX="8dp" />
 
         <TextView

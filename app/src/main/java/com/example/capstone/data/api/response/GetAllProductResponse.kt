@@ -26,5 +26,11 @@ data class GetAllProductResponseItem(
 	val description: String? = null,
 
 	@field:SerializedName("category")
-	val category: String? = null
+	val category: String? = null,
+
+	@field:SerializedName("isVisible")
+	val isVisible: Boolean? = null,
+
+	@field:SerializedName("isCompleted")
+	val isCompleted: Boolean? = null
 )

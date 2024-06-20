@@ -27,8 +27,17 @@
         android:id="@+id/nav_profile"
         android:name="com.example.capstone.view.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_nav_seller_profile"
+            app:destination="@id/nav_seller_profile" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/nav_seller_profile"
+        android:name="com.example.capstone.view.profile.sellerprofile.SellerProfileFragment"
+        android:label="@string/title_seller_profile"
+        tools:layout="@layout/fragment_profile_seller" />
 
 
 
