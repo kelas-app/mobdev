@@ -20,6 +20,7 @@ data class UploadNewProductResponse(
 	val description: String? = null,
 
 	@field:SerializedName("category")
+
 	val category: String? = null,
 
 	@field:SerializedName("_id")

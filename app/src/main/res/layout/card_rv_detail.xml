@@ -19,7 +19,7 @@
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/img_item_photo"
+            android:id="@+id/img_item_photo_review"
             android:layout_width="133dp"
             android:layout_height="64dp"
             android:scaleType="centerCrop"
@@ -31,7 +31,7 @@
             card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_md_bt"
@@ -40,16 +40,16 @@
             android:textStyle="bold"
             android:layout_marginStart="5dp"
             android:layout_marginTop="3dp"
-            card_view:layout_constraintStart_toStartOf="@+id/img_item_photo"
-            card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
+            card_view:layout_constraintStart_toStartOf="@+id/img_item_photo_review"
+            card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo_review" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_seller"
+            android:id="@+id/img_seller_review"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginTop="5dp"
-            card_view:layout_constraintStart_toStartOf="@+id/title"
-            card_view:layout_constraintTop_toBottomOf="@+id/title"
+            card_view:layout_constraintStart_toStartOf="@+id/title_review"
+            card_view:layout_constraintTop_toBottomOf="@+id/title_review"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -60,10 +60,10 @@
             tools:text="Pamelo Anderson"
             android:textStyle="bold"
             android:textSize="8sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/img_seller"
-            card_view:layout_constraintEnd_toEndOf="@+id/title"
-            card_view:layout_constraintStart_toEndOf="@+id/img_seller"
-            card_view:layout_constraintTop_toTopOf="@+id/img_seller" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_seller_review"
+            card_view:layout_constraintEnd_toEndOf="@+id/title_review"
+            card_view:layout_constraintStart_toEndOf="@+id/img_seller_review"
+            card_view:layout_constraintTop_toTopOf="@+id/img_seller_review" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,9 +73,9 @@
             android:text="@string/star"
             android:textSize="8sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toBottomOf="@+id/title"
+            card_view:layout_constraintBottom_toBottomOf="@+id/title_review"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
+            card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo_review" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

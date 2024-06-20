@@ -149,13 +149,22 @@
        android:padding="8dp">
 
     <Button
-        android:id="@+id/chair"
+        android:id="@+id/all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories1"
+        android:text="@string/all"
         android:textColor="@color/white"
-        android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:background="@drawable/bg_button"
+        android:layout_marginEnd="8dp" />
+    <Button
+        android:id="@+id/recommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ForYou"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button"
+        android:layout_marginEnd="8dp" />
+
 
     <Button
         android:id="@+id/table"
@@ -207,10 +216,11 @@
       app:layout_constraintStart_toStartOf="@+id/text_categories"
       app:layout_constraintTop_toBottomOf="@+id/scrollcategories" />
 
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rv_home"
     android:layout_width="0dp"
-    android:layout_height="0dp"
+    android:layout_height="wrap_content"
     tools:layout_height="1000dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="10dp"
@@ -219,6 +229,17 @@
     app:layout_constraintTop_toBottomOf="@+id/title_recommendation"
     tools:listitem="@layout/card_rv_home"/>
 
+  <ProgressBar
+      android:id="@+id/progressbar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="@id/rv_home"
+      app:layout_constraintEnd_toEndOf="@id/rv_home"
+      app:layout_constraintStart_toStartOf="@id/rv_home"
+      app:layout_constraintTop_toTopOf="@id/rv_home"
+      tools:visibility="visible" />
  </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -1,9 +1,9 @@
 package com.example.capstone.data.api.services
-
-import okhttp3.MultipartBody
-import retrofit2.http.Multipart
 import java.io.File
 
+data class ProductRequestRecommend (
+    val userId : String
+)
 data class ProductRequest(
     val name:String,
     val description: String,

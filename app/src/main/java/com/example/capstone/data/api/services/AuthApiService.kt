@@ -23,11 +23,11 @@ interface AuthApiService {
         @Body registerRequest: RegisterRequest
     ):RegisterResponse
 
+
     @PUT("users/{id}")
     suspend fun updateUserProfile(
         @Path("id") userId: String,
         @Body userProfile: UserProfile
     ): Response<UserProfileResponse>
-
 
 }
