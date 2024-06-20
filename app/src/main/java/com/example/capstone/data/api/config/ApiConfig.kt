@@ -1,6 +1,9 @@
 package com.example.capstone.data.api.config
 
 import com.example.capstone.data.api.services.AuthApiService
+
+import com.example.capstone.data.api.services.EditProfileApiService
+
 import com.example.capstone.data.api.services.ProductApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,8 +22,6 @@ object ApiConfig {
             .build()
         val retrofit = Retrofit.Builder()
             .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
-//            .baseUrl("http://161.97.109.65:3000/api/")
-
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -39,13 +40,14 @@ object ApiConfig {
         }
 
         val client = OkHttpClient.Builder().readTimeout(60, TimeUnit.SECONDS)
+
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
             .build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
-//            .baseUrl("http://161.97.109.65:3000/api/")
+
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -53,5 +55,25 @@ object ApiConfig {
         return retrofit.create(ProductApiService::class.java)
     }
 
+    fun getEditProfileApiService(token: String): EditProfileApiService {
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val authInterceptor = Interceptor { chain ->
+            val request = chain.request()
+            val requestBuilder = request.newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+            chain.proceed(requestBuilder)
+        }
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/") // Sesuaikan dengan URL API untuk edit profil
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        return retrofit.create(EditProfileApiService::class.java)
+    }
 
 }

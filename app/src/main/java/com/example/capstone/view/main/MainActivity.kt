@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.capstone.R
 import com.example.capstone.databinding.ActivityMainBinding
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //setSupportActionBar(binding.toolbar)
+
         observeSession()
         Log.d("MainActivity", "onCreate took ${System.currentTimeMillis() } ms")
     }
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_chat, R.id.nav_cart, R.id.nav_profile
             )
         )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+        //setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigation.setupWithNavController(navController)
     }
 }
