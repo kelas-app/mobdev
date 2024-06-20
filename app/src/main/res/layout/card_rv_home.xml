@@ -71,9 +71,12 @@
             tools:ignore="SmallSp" />
 
         <ImageView
-            android:layout_width="37dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@drawable/minicart"
+            card_view:flow_horizontalBias="0.0"
+            card_view:flow_verticalBias="0.0"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent" />
 

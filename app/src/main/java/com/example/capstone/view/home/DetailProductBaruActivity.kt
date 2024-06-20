@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.capstone.R
 import com.example.capstone.databinding.ActivityDetailProductBaruBinding
 import com.example.capstone.di.factory.ViewModelFactory
+import com.example.capstone.view.chat.ChatActivity
 import com.example.capstone.view.main.MainActivity
 
 class DetailProductBaruActivity : AppCompatActivity() {
@@ -28,18 +30,30 @@ class DetailProductBaruActivity : AppCompatActivity() {
 
     companion object{
         const val EXTRA_PRODUCT_ID = "extra_product_id"
+        const val EXTRA_PRODUCT_SELLER = "extra_product_seller"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProductBaruBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sellerId = intent.getStringExtra(EXTRA_PRODUCT_SELLER)
         val productId = intent.getStringExtra(EXTRA_PRODUCT_ID)
+
         if (productId != null) {
             viewModel.fetchProductDetails(productId)
         }
 
         observeViewModel()
+
+        binding.btnAskSeller.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java).apply {
+                putExtra(ChatActivity.EXTRA_SELLER_ID, sellerId)
+            }
+            startActivity(intent)
+
+
+        }
 
         binding.buttonback.setOnClickListener {
             val intent = Intent(this ,MainActivity::class.java)

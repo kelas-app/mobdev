@@ -142,17 +142,18 @@
             android:text="@string/reviews" />
 
         <Button
+            android:id="@+id/btnAskSeller"
             android:layout_width="112dp"
             android:layout_height="40dp"
-            android:backgroundTint="@color/C2"
-            android:elevation="10dp"
+            android:backgroundTint="@color/P1"
+            android:elevation="20dp"
             android:text="@string/ask_seller"
-            android:textColor="@color/C4"
+            android:textColor="@color/C6"
             app:layout_constraintBottom_toBottomOf="@+id/img_seller"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.805"
             app:layout_constraintStart_toEndOf="@+id/reviews"
-            app:layout_constraintTop_toTopOf="@+id/img_seller" />
+            app:layout_constraintTop_toTopOf="@+id/img_seller"/>
 
         <TextView
             android:id="@+id/location"

@@ -57,8 +57,4 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
     }
 
 
-
-
-
-
 }

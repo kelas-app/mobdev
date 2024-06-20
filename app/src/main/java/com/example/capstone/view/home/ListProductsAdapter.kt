@@ -52,6 +52,7 @@ class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAd
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context,DetailProductBaruActivity::class.java).apply {
                 putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_ID, product._id)
+                putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_SELLER, product.sellerId)
             }
             holder.itemView.context.startActivity(intentDetail)
         }

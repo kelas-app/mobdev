@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstone.R
 import com.example.capstone.databinding.FragmentHomeBinding
 import com.example.capstone.di.factory.ViewModelFactory
 import com.example.capstone.view.login.LoginActivity
@@ -43,6 +45,8 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        initializedSearch()
         //default
         fetchRecommendation()
 
@@ -78,6 +82,15 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    private fun initializedSearch() {
+        binding.searchView.setupWithSearchBar(binding.searchBar)
+        binding.searchView.editText.setOnEditorActionListener { textView, actionId, event ->
+            binding.searchBar.setText(binding.searchView.text)
+            binding.searchView.hide()
+            Toast.makeText(requireContext(), binding.searchView.text, Toast.LENGTH_SHORT).show()
+            false
+        }
+    }
 
     private fun fetchCategoryProducts(category: String) {
         showLoading(true)

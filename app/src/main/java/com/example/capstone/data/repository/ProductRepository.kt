@@ -1,15 +1,20 @@
 package com.example.capstone.data.repository
 
+import com.example.capstone.data.api.response.ConversationsResponseItem
 import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponse
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
+import com.example.capstone.data.api.response.LoginResponse
+import com.example.capstone.data.api.services.ConversationsRequest
+import com.example.capstone.data.api.services.LoginRequest
 import com.example.capstone.data.api.services.ProductApiService
 import com.example.capstone.data.api.services.ProductRequest
 import com.example.capstone.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+
 
 class ProductRepository private constructor(
     private val productApiService: ProductApiService,
@@ -73,6 +78,49 @@ class ProductRepository private constructor(
             try {
                 val allProduct = productApiService.getAllNewProducts()
                 emit(Result.success(allProduct))
+            } catch (e: Exception) {
+                emit(Result.failure(e))
+            }
+        }
+    }
+    fun getAllChat (productId:String): Flow<Result<List<ConversationsResponseItem>>> = flow {
+        if (userPreference.isTokenExpired()) {
+            logout()
+            emit(Result.failure(Exception("Token expired")))
+        } else{
+            try {
+                val chat = productApiService.getAllChat(productId)
+                emit(Result.success(chat))
+            } catch (e: Exception) {
+                emit(Result.failure(e))
+            }
+        }
+    }
+
+
+//    fun createConversation(participants: List<String>): Flow<Result<List<ConversationsResponseItem>>> = flow {
+//        if (userPreference.isTokenExpired()) {
+//            logout()
+//            emit(Result.failure(Exception("Token expired")))
+//        } else {
+//            try {
+//                val conversationRequest = ConversationsRequest(participants)
+//                val conversation = productApiService.createConversations(conversationRequest)
+//                emit(Result.success(conversation))
+//            } catch (e: Exception) {
+//                emit(Result.failure(e))
+//            }
+//        }
+//    }
+
+    fun createConversation(request: ConversationsRequest): Flow<Result<List<ConversationsResponseItem>>> = flow {
+        if (userPreference.isTokenExpired()) {
+            logout()
+            emit(Result.failure(Exception("Token expired")))
+        } else {
+            try {
+                val conversation = productApiService.createConversations(request)
+                emit(Result.success(conversation))
             } catch (e: Exception) {
                 emit(Result.failure(e))
             }
