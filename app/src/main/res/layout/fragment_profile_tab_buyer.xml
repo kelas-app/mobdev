@@ -3,30 +3,151 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.profile.sellerprofile.buyertab.BuyerTabFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
+        android:background="@drawable/rounded_shape"
         android:orientation="vertical"
+        android:padding="12dp"
+        android:elevation="4dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@color/C2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintVertical_bias="0.061">
 
         <TextView
+            android:id="@+id/tvFirstNameLabel"
+            style="@style/Bd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/firstname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFirstName"
             style="@style/Bd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alamat" />
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/firstname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFirstNameLabel" />
+
+        <TextView
+            android:id="@+id/tvLastNameLabel"
+            style="@style/Bd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/lastname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/lastname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastNameLabel" />
+
+        <TextView
+            android:id="@+id/tvUsernameLabel"
+            style="@style/Bd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastName" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsernameLabel" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumberLabel"
+            style="@style/Bd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/phonenumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/phonenumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberLabel" />
+
+        <TextView
+            android:id="@+id/tvAddressLabel"
+            style="@style/Bd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumber" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/Bd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddressLabel" />
+
+        <TextView
+            style="@style/Bd1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alamat"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             android:background="@drawable/small_rounded_shape"
             android:backgroundTint="@color/C2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="137dp"
@@ -58,10 +179,8 @@
                     android:textColor="@color/black"
                     app:cornerRadius="24dp" />
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

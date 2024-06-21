@@ -116,7 +116,7 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomguideline"
+        app:layout_constraintBottom_toTopOf="@+id/btnJualBarang"
         app:layout_constraintTop_toBottomOf="@+id/scrollcategories" />
 
     <Button
@@ -139,5 +139,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="100dp" />
+        app:layout_constraintGuide_percent="0.88776654" />
 </androidx.constraintlayout.widget.ConstraintLayout>
