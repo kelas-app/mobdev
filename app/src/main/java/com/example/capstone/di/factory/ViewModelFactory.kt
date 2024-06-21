@@ -3,18 +3,21 @@ package com.example.capstone.di.factory
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.capstone.data.pref.UserPreference
+import com.example.capstone.data.repository.OrderRepository
 import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.data.repository.UserRepository
 import com.example.capstone.di.Injection
+import com.example.capstone.view.cart.keranjang.KeranjangViewModel
+import com.example.capstone.view.cart.riwayat.OrderViewModel
 import com.example.capstone.view.chat.ChatViewModel
 import com.example.capstone.view.home.DetailProductBaruViewModel
 import com.example.capstone.view.home.HomeViewModel
 import com.example.capstone.view.main.MainViewModel
 import java.lang.IllegalArgumentException
 
-class ViewModelFactory (private val userRepository: UserRepository , private val productRepository: ProductRepository, private val userPreference: UserPreference): ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory (private val userRepository: UserRepository , private val productRepository: ProductRepository, private val userPreference: UserPreference,    private val orderRepository: OrderRepository
+): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -22,20 +25,22 @@ class ViewModelFactory (private val userRepository: UserRepository , private val
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(userRepository) as T
             }
-
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(productRepository, userPreference) as T
             }
-
             modelClass.isAssignableFrom(DetailProductBaruViewModel::class.java) -> {
                 DetailProductBaruViewModel(productRepository) as T
             }
-
             modelClass.isAssignableFrom(ChatViewModel::class.java) -> {
                 ChatViewModel(productRepository, userPreference) as T
             }
-
-            else -> throw IllegalArgumentException("unknown ViewModel Class: " + modelClass.name)
+            modelClass.isAssignableFrom(OrderViewModel::class.java) -> {
+                OrderViewModel(productRepository) as T
+            }
+            modelClass.isAssignableFrom(KeranjangViewModel::class.java) -> {
+                KeranjangViewModel(productRepository,orderRepository) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
 

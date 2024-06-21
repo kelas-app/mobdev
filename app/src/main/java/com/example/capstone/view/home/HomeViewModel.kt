@@ -22,17 +22,14 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
     private val _categories = MutableLiveData<Result<List<GetCategoryProductResponseItem>>>()
     val categories: LiveData<Result<List<GetCategoryProductResponseItem>>> = _categories
 
-    private val _allProducts = MutableLiveData<Result<List<GetAllProductNewResponseItem>>>()
-    val allProducts: LiveData<Result<List<GetAllProductNewResponseItem>>> = _allProducts
+    private val _allProducts = MutableLiveData<Result<List<GetAllProductResponseItem>>>()
+    val allProducts: LiveData<Result<List<GetAllProductResponseItem>>> = _allProducts
 
     private val _searchResults = MutableLiveData<Result<List<SearchProductResponseItem>>>()
     val searchResults: LiveData<Result<List<SearchProductResponseItem>>> = _searchResults
 
-
-
-
     fun getProducts(userId: String): LiveData<Result<List<GetAllProductResponseItem>>> {
-        val resultFlow = productRepository.getProducts(userId)
+        val resultFlow = productRepository.getProductRecommendation(userId)
             .onStart { /* Show loading */ }
             .catch { exception -> _products.postValue(Result.failure(exception)) }
 
@@ -47,8 +44,8 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
         return resultFlow.asLiveData()
     }
 
-    fun getAllNewProducts(): LiveData<Result<List<GetAllProductNewResponseItem>>>{
-        val resultFlow = productRepository.getAllNewProduct()
+    fun getAllNewProducts(): LiveData<Result<List<GetAllProductResponseItem>>>{
+        val resultFlow = productRepository.getAllProduct()
             .onStart {  }
             .catch { exception -> _allProducts.postValue(Result.failure(exception)) }
 

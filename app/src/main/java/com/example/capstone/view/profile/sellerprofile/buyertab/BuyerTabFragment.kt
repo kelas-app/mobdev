@@ -5,21 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.capstone.R  // Sesuaikan dengan path dan nama package Anda
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.example.capstone.R
+import com.example.capstone.data.api.response.Data
+import com.example.capstone.databinding.FragmentProfileTabBuyerBinding
 
 class BuyerTabFragment : Fragment() {
+
+    private val viewModel: BuyerTabViewModel by viewModels()
+    private var _binding: FragmentProfileTabBuyerBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_tab_buyer, container, false)
+    ): View {
+        _binding = FragmentProfileTabBuyerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize views and setup any other necessary configurations
+        viewModel.userData.observe(viewLifecycleOwner, Observer { data ->
+            updateUI(data)
+        })
+    }
+
+    private fun updateUI(data: Data) {
+        binding.tvFirstName.text = data.firstname
+        binding.tvLastName.text = data.lastname
+        binding.tvUsername.text = data.username
+        binding.tvPhoneNumber.text = data.phone
+        binding.tvAddress.text = data.address
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

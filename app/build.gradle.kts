@@ -74,11 +74,14 @@ dependencies {
 //    ini untuk circle image
     implementation("de.hdodenhof:circleimageview:3.1.0")
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
 
     implementation ("androidx.appcompat:appcompat:1.7.0")
     implementation ("androidx.core:core-ktx:1.13.1")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.datastore)
 

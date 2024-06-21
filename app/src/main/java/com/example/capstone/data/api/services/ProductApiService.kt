@@ -1,8 +1,7 @@
 package com.example.capstone.data.api.services
 
+import com.example.capstone.data.api.response.CartItem
 import com.example.capstone.data.api.response.ConversationsResponseItem
-import com.example.capstone.data.api.response.DashboardResponse
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
@@ -16,6 +15,13 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.Call
+import com.example.capstone.data.api.response.Order
+import retrofit2.Response
+import retrofit2.http.Header
+import retrofit2.http.PUT
+import com.example.capstone.data.api.response.DashboardResponse
+import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import retrofit2.http.Query
 
 interface ProductApiService {
@@ -23,6 +29,9 @@ interface ProductApiService {
     suspend fun getAllProducts(
         @Body request: ProductRequestRecommend
     ): List<GetAllProductResponseItem>
+
+    @GET("cart/view")
+    suspend fun getCartItems(): List<CartItem>
 
     @GET("products/{id}")
     suspend fun detailProduct(
@@ -35,7 +44,7 @@ interface ProductApiService {
     ): List<GetCategoryProductResponseItem>
 
     @GET("products/")
-    suspend fun getAllNewProducts(): List<GetAllProductNewResponseItem>
+    suspend fun getAllNewProducts(): List<GetAllProductResponseItem>
 
     @GET("conversations/{userId}")
     suspend fun getAllChat(
@@ -47,6 +56,9 @@ interface ProductApiService {
         @Body request: ConversationsRequest
     ): List<ConversationsResponseItem>
 
+    @GET("orders")
+    suspend fun getOrders(@Header("Authorization") token: String): Response<List<Order>>
+
     @Multipart
     @POST("products")
     suspend fun uploadNewProduct(
@@ -55,6 +67,17 @@ interface ProductApiService {
       @Part("price") price: RequestBody,
       @Part("category") category: RequestBody,
       @Part productImage: MultipartBody.Part
+    ): UploadNewProductResponse
+
+    @Multipart
+    @PUT("products/{productId}")
+    suspend fun updateNewProduct(
+        @Path("productId") id: String,
+        @Part("name") name: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("price") price: RequestBody,
+        @Part("category") category: RequestBody,
+        @Part productImage: MultipartBody.Part
     ): UploadNewProductResponse
 
     @GET("orders/dashboard")
