@@ -29,7 +29,7 @@ class ViewModelFactory (private val userRepository: UserRepository , private val
                 HomeViewModel(productRepository, userPreference) as T
             }
             modelClass.isAssignableFrom(DetailProductBaruViewModel::class.java) -> {
-                DetailProductBaruViewModel(productRepository) as T
+                DetailProductBaruViewModel(productRepository,userRepository) as T
             }
             modelClass.isAssignableFrom(ChatViewModel::class.java) -> {
                 ChatViewModel(productRepository, userPreference) as T

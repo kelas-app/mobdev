@@ -46,29 +46,31 @@
         </LinearLayout>
 
         <ImageView
+            android:scaleType="centerCrop"
             android:id="@+id/img_item_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"            android:layout_marginTop="20dp"
+            android:src="@drawable/detailkursi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:src="@drawable/detailkursi" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/futura_hv_bt"
+            android:maxWidth="200dp"
+            android:maxLines="2"
+            android:text="@string/detail_goods"
             android:textSize="25sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_item_photo"
-            android:text="@string/detail_goods" />
+            android:layout_width="0dp"/>
 
         <TextView
             android:id="@+id/category"
@@ -118,44 +120,43 @@
             android:layout_height="wrap_content"
             android:text="@string/seller_name"
             android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/star"
+            app:layout_constraintBottom_toTopOf="@+id/firstname"
             app:layout_constraintStart_toEndOf="@+id/img_seller"
             app:layout_constraintTop_toTopOf="@+id/img_seller" />
 
         <TextView
-            android:id="@+id/star"
+            android:id="@+id/firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/star"
+            android:text="@string/firstname"
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_seller"
             app:layout_constraintStart_toEndOf="@+id/img_seller"
             app:layout_constraintTop_toBottomOf="@+id/seller_name"/>
 
         <TextView
-            android:id="@+id/reviews"
+            android:id="@+id/lastname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/star"
-            app:layout_constraintStart_toEndOf="@+id/star"
-            android:text="@string/reviews" />
+            android:layout_marginStart="8dp"
+            android:text="@string/lastname"
+            app:layout_constraintBottom_toBottomOf="@+id/firstname"
+            app:layout_constraintStart_toEndOf="@+id/firstname" />
 
         <Button
             android:id="@+id/btnAskSeller"
-            android:layout_width="112dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:backgroundTint="@color/P1"
             android:elevation="20dp"
-            android:text="@string/ask_seller"
+            android:text="@string/add_to_cart"
             android:textColor="@color/C6"
             app:layout_constraintBottom_toBottomOf="@+id/img_seller"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.805"
-            app:layout_constraintStart_toEndOf="@+id/reviews"
-            app:layout_constraintTop_toTopOf="@+id/img_seller"/>
+            app:layout_constraintEnd_toEndOf="@+id/img_item_photo"
+            app:layout_constraintTop_toTopOf="@+id/img_seller" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -167,6 +168,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_seller" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
             android:id="@+id/constraintLayout"
             android:layout_width="368dp"
             android:layout_height="100dp"
@@ -206,6 +208,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/title_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -217,6 +220,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="195dp"
@@ -227,6 +231,7 @@
             tools:listitem="@layout/card_rv_detail"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:visibility="gone"
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

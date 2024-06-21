@@ -21,7 +21,8 @@ import retrofit2.Response
 import retrofit2.http.Header
 import retrofit2.http.PUT
 import com.example.capstone.data.api.response.DashboardResponse
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
+import com.example.capstone.data.api.response.Data
+import com.example.capstone.data.api.response.LoginResponse
 import retrofit2.http.Query
 
 interface ProductApiService {
@@ -88,5 +89,13 @@ interface ProductApiService {
         @Query("term") term: String
     ): List<SearchProductResponseItem>
 
+    @POST("cart/add")
+    suspend fun addItemToCart(
+        @Body cartRequest: CartRequest
+    ): ApiResponse  // Assuming ApiResponse is your response model
+    @GET("users/{userId}")
+    suspend fun getSellerProfileByID(
+        @Path("userId") userId: String,
+    ): Data
 }
 

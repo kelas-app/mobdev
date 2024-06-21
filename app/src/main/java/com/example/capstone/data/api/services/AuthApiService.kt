@@ -1,11 +1,13 @@
 package com.example.capstone.data.api.services
 
+import com.example.capstone.data.api.response.Data
 import com.example.capstone.data.api.response.LoginResponse
 import com.example.capstone.data.api.response.RegisterResponse
 import com.example.capstone.view.profile.UserProfile
 import com.example.capstone.data.api.response.UserProfileResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path

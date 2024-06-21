@@ -4,6 +4,7 @@ import com.example.capstone.data.api.response.Data
 import com.example.capstone.view.profile.SellerProfile
 import com.example.capstone.view.profile.UserProfile
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -19,4 +20,6 @@ interface EditProfileApiService {
         @Path("userId") userId: String,
         @Body sellerProfile: SellerProfile
     ): Data
+
+
 }

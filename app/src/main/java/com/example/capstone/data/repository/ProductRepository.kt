@@ -3,12 +3,13 @@ package com.example.capstone.data.repository
 import com.example.capstone.data.api.response.CartItem
 import com.example.capstone.data.api.response.ConversationsResponseItem
 import com.example.capstone.data.api.response.DashboardResponse
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
+import com.example.capstone.data.api.response.Data
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
 import com.example.capstone.data.api.response.SearchProductResponseItem
 import com.example.capstone.data.api.response.UploadNewProductResponse
+import com.example.capstone.data.api.services.CartRequest
 import com.example.capstone.data.api.services.ConversationsRequest
 import com.example.capstone.data.api.services.ProductApiService
 import com.example.capstone.data.api.services.ProductRequestRecommend
@@ -165,7 +166,21 @@ class ProductRepository private constructor(
     suspend fun getDashboardData(): DashboardResponse {
         return productApiService.getDashboardData()
     }
+    suspend fun getSellerProfileByID(userId: String): Data {
+        return productApiService.getSellerProfileByID(userId)
+    }
+    suspend fun addItemToCart(productId: String): String {
+        try {
+            val cartRequest = CartRequest(productId)
+            val response = productApiService.addItemToCart(cartRequest)
 
+            // Assuming ApiResponse has a message field
+            return response.message // Adjust based on your actual response structure
+        } catch (e: Exception) {
+            // Handle exceptions or errors here
+            return "Error: ${e.message}"
+        }
+    }
     suspend fun logout(){
         userPreference.logout()
     }

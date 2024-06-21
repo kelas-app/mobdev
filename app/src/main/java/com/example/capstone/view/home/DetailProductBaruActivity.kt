@@ -2,12 +2,17 @@ package com.example.capstone.view.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.capstone.R
 import com.example.capstone.databinding.ActivityDetailProductBaruBinding
+import com.example.capstone.di.Injection
 import com.example.capstone.di.factory.ViewModelFactory
+import com.example.capstone.view.cart.CartViewModel
 import com.example.capstone.view.main.MainActivity
 
 class DetailProductBaruActivity : AppCompatActivity() {
@@ -17,6 +22,7 @@ class DetailProductBaruActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailProductBaruBinding
+    private lateinit var cartViewModel: CartViewModel
 
     companion object{
         const val EXTRA_PRODUCT_ID = "extra_product_id"
@@ -26,6 +32,9 @@ class DetailProductBaruActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProductBaruBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val productRepository = Injection.provideProductRepository(this)
+        cartViewModel = CartViewModel(productRepository)
 
         val sellerId = intent.getStringExtra(EXTRA_PRODUCT_SELLER)
         val productId = intent.getStringExtra(EXTRA_PRODUCT_ID)
@@ -37,17 +46,18 @@ class DetailProductBaruActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.btnAskSeller.setOnClickListener {
-//            pablo@gmail.com
-
+            cartViewModel.addItemToCart(productId!!).observe(this) { result ->
+                Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.buttonback.setOnClickListener {
-            val intent = Intent(this ,MainActivity::class.java)
-                startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
-
     }
-        private fun observeViewModel() {
+
+    private fun observeViewModel() {
         viewModel.productDetails.observe(this) { product ->
             binding.title.text = product.name
             binding.category.text = product.category
@@ -58,6 +68,12 @@ class DetailProductBaruActivity : AppCompatActivity() {
                 .placeholder(R.drawable.detailkursi)
                 .error(R.drawable.detailkursi)
                 .into(binding.imgItemPhoto)
+        }
+
+        viewModel.sellerProfile.observe(this) { profile ->
+            binding.sellerName.text = profile.username // Menggunakan username dari profil seller
+            binding.firstname.text = profile.firstname // Menggunakan firstname dari profil seller
+            binding.lastname.text = profile.lastname // Menggunakan lastname dari profil seller
         }
     }
 }

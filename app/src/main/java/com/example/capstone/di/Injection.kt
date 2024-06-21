@@ -2,6 +2,7 @@ package com.example.capstone.di
 
 import android.content.Context
 import com.example.capstone.data.api.config.ApiConfig
+import com.example.capstone.data.api.services.CartRequest
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.pref.dataStore
 import com.example.capstone.data.repository.ProductRepository
@@ -27,6 +28,8 @@ object Injection {
         val apiService = ApiConfig.getAllProductService(user.token)
         return ProductRepository.getInstance(preference, apiService)
     }
+
+
     fun provideViewModelFactory(context: Context): ViewModelFactory {
         val userRepository = provideUserRepository(context)
         val productRepository = provideProductRepository(context)
@@ -34,6 +37,7 @@ object Injection {
         val orderRepository = provideOrderRepository(context)
         return ViewModelFactory(userRepository, productRepository, userPreference, orderRepository)
     }
+
     fun provideOrderRepository(context: Context): OrderRepository { // Update return type to OrderRepository
         val preference = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { preference.getSession().first() }
@@ -48,6 +52,7 @@ object Injection {
         val apiService = ApiConfig.getEditProfileApiService(token) // Menggunakan ApiConfig baru untuk edit profil
         return EditProfileRepository(apiService, userPreference)
     }
+
 
   
 

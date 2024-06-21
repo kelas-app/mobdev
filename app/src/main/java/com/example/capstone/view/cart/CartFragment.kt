@@ -24,8 +24,6 @@ class CartFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
 //        ini untuk memasukkan model nya
-        val cartViewModel =
-            ViewModelProvider(this)[CartViewModel::class.java]
 
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
