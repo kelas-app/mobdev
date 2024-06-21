@@ -1,23 +1,13 @@
 package com.example.capstone.view.home
 
 import android.content.Intent
-import android.nfc.cardemulation.CardEmulation.EXTRA_CATEGORY
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.bumptech.glide.Glide
 import com.example.capstone.R
 import com.example.capstone.databinding.ActivityDetailProductBaruBinding
 import com.example.capstone.di.factory.ViewModelFactory
-import com.example.capstone.view.chat.ChatActivity
 import com.example.capstone.view.main.MainActivity
 
 class DetailProductBaruActivity : AppCompatActivity() {
@@ -47,11 +37,7 @@ class DetailProductBaruActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.btnAskSeller.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java).apply {
-                putExtra(ChatActivity.EXTRA_SELLER_ID, sellerId)
-            }
-            startActivity(intent)
-
+//            pablo@gmail.com
 
         }
 
@@ -69,8 +55,8 @@ class DetailProductBaruActivity : AppCompatActivity() {
             binding.description.text = product.description
             Glide.with(this)
                 .load(product.productImage)
-                .placeholder(R.drawable.detailkursi) // Default image while loading
-                .error(R.drawable.detailkursi) // Default image if there is an error or null
+                .placeholder(R.drawable.detailkursi)
+                .error(R.drawable.detailkursi)
                 .into(binding.imgItemPhoto)
         }
     }

@@ -4,18 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.capstone.data.api.response.GetAllProductNewResponse
 import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
+import com.example.capstone.data.api.response.SearchProductResponseItem
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.repository.ProductRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 
 class HomeViewModel(private val productRepository: ProductRepository, private val userPreference: UserPreference): ViewModel() {
 
@@ -27,6 +24,12 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
 
     private val _allProducts = MutableLiveData<Result<List<GetAllProductNewResponseItem>>>()
     val allProducts: LiveData<Result<List<GetAllProductNewResponseItem>>> = _allProducts
+
+    private val _searchResults = MutableLiveData<Result<List<SearchProductResponseItem>>>()
+    val searchResults: LiveData<Result<List<SearchProductResponseItem>>> = _searchResults
+
+
+
 
     fun getProducts(userId: String): LiveData<Result<List<GetAllProductResponseItem>>> {
         val resultFlow = productRepository.getProducts(userId)
@@ -52,9 +55,18 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
         return resultFlow.asLiveData()
     }
 
+    fun searchProducts(term: String): LiveData<Result<List<SearchProductResponseItem>>> {
+        val resultFlow = productRepository.searchProducts(term)
+            .onStart { /* Show loading */ }
+            .catch { exception -> _searchResults.postValue(Result.failure(exception)) }
+
+        return resultFlow.asLiveData()
+    }
+
     fun getUserId(): LiveData<String?> {
         return userPreference.getSession().map { it.id }.asLiveData()
     }
+
 
 
 }

@@ -6,20 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.capstone.R
+import com.example.capstone.data.api.response.SearchProductResponseItem
 import com.example.capstone.databinding.FragmentHomeBinding
 import com.example.capstone.di.factory.ViewModelFactory
 import com.example.capstone.view.login.LoginActivity
-import com.example.capstone.view.main.MainViewModel
-import kotlinx.coroutines.launch
+
 
 class HomeFragment : Fragment() {
 
@@ -34,6 +29,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var allProductAdapter: ListAllProductAdapter
 
+    private lateinit var searchAdapter: SearchProductAdapter
+
     private val TAG = "HomeFragment"
 
     private val binding get() = _binding!!
@@ -46,9 +43,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        initializedSearch()
+        initializeSearch()
         //default
-        fetchRecommendation()
+        fetchAllProducts()
+        binding.titleRecommendation.text = "All Products"
 
         binding.recommendation.setOnClickListener{
             fetchRecommendation()
@@ -82,15 +80,70 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun initializedSearch() {
-        binding.searchView.setupWithSearchBar(binding.searchBar)
-        binding.searchView.editText.setOnEditorActionListener { textView, actionId, event ->
-            binding.searchBar.setText(binding.searchView.text)
-            binding.searchView.hide()
-            Toast.makeText(requireContext(), binding.searchView.text, Toast.LENGTH_SHORT).show()
-            false
+    private fun initializeSearch() {
+        val searchView = binding.searchBar
+
+        // Set up query listener for search actions
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    binding.search.visibility = View.VISIBLE
+                    performSearch(query.trim())
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrEmpty()) {
+                    performSearch(newText.trim())
+                } else {
+                    binding.search.visibility = View.GONE
+                }
+                return true
+            }
+        })
+
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && searchView.query.isEmpty()) {
+                binding.search.visibility = View.GONE
+            }
         }
     }
+
+    private fun performSearch(searchTerm: String) {
+        if (searchTerm.isEmpty()) {
+            binding.search.visibility = View.GONE
+            return
+        }
+        showLoading(true)
+        viewModel.searchProducts(searchTerm).observe(viewLifecycleOwner) { result ->
+            result.fold(
+                onSuccess = { products ->
+                    // Handle search results, update UI, etc.
+                    Log.d(TAG, "Search Results observed $products")
+                    setupSearchRecyclerView(products)
+                    if (products.isNotEmpty()) {
+                        binding.search.visibility = View.VISIBLE
+                    } else {
+                        binding.search.visibility = View.GONE
+                    }
+                    showLoading(false)
+                },
+                onFailure = { exception ->
+                    Log.d(TAG, "Error: ${exception.message}")
+                    // Handle token expiration or other errors
+                    showLoading(false)
+                }
+            )
+        }
+    }
+
+    private fun setupSearchRecyclerView(products: List<SearchProductResponseItem>) {
+        searchAdapter = SearchProductAdapter(products)
+        binding.search.layoutManager = LinearLayoutManager(requireContext())
+        binding.search.adapter = searchAdapter
+    }
+
 
     private fun fetchCategoryProducts(category: String) {
         showLoading(true)
@@ -194,6 +247,8 @@ class HomeFragment : Fragment() {
         viewModel.getAllNewProducts().observe(viewLifecycleOwner) { result ->
             result.fold(
                 onSuccess = { products ->
+                    val sellerId = products.mapNotNull {it.sellerId}
+                    Log.d(TAG, "Seller IDs: $sellerId")
                     Log.d(TAG, "Products observed ${products.size}")
                     allProductAdapter.submitList(products)
                     showLoading(false)
@@ -212,7 +267,6 @@ class HomeFragment : Fragment() {
             )
         }
     }
-
 
 
     private fun showLoading(state: Boolean) {
