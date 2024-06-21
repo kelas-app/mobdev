@@ -2,10 +2,12 @@ package com.example.capstone.data.repository
 
 import com.example.capstone.data.api.response.CartItem
 import com.example.capstone.data.api.response.ConversationsResponseItem
+import com.example.capstone.data.api.response.DashboardResponse
+import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
-import com.example.capstone.data.api.response.DashboardResponse
+import com.example.capstone.data.api.response.SearchProductResponseItem
 import com.example.capstone.data.api.response.UploadNewProductResponse
 import com.example.capstone.data.api.services.ConversationsRequest
 import com.example.capstone.data.api.services.ProductApiService
@@ -31,11 +33,9 @@ class ProductRepository private constructor(
             productApiService: ProductApiService
         ) = ProductRepository(productApiService, userPreference)
     }
-    
-    /*suspend fun getAllProducts(): List<GetAllProductResponseItem> {
-        return productApiService.getAllProducts()
-    }*/
+       
     suspend fun getOrders(token: String) = productApiService.getOrders(token)
+
 
     suspend fun getCartItems(): List<CartItem> = withContext(Dispatchers.IO) {
         productApiService.getCartItems()
@@ -142,6 +142,20 @@ class ProductRepository private constructor(
             try {
                 val conversation = productApiService.createConversations(request)
                 emit(Result.success(conversation))
+            } catch (e: Exception) {
+                emit(Result.failure(e))
+            }
+        }
+    }
+
+    fun searchProducts(term: String): Flow<Result<List<SearchProductResponseItem>>> = flow {
+        if (userPreference.isTokenExpired()) {
+            logout()
+            emit(Result.failure(Exception("Token expired")))
+        } else {
+            try {
+                val searchResults = productApiService.searchProducts(term)
+                emit(Result.success(searchResults))
             } catch (e: Exception) {
                 emit(Result.failure(e))
             }

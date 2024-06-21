@@ -20,9 +20,7 @@ android {
         buildConfigField  ("String", "API_BASE_URL", "\"${project.findProperty("API_BASE_URL")}\"")
 
     }
-    buildFeatures {
-        buildConfig = true
-    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -43,6 +41,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 
 
@@ -78,7 +77,11 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("androidx.appcompat:appcompat:1.7.0")
+    implementation ("androidx.core:core-ktx:1.13.1")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.datastore)
 
