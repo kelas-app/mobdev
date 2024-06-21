@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,8 @@ class SellerAdapter(var items: List<ProductRequest>) :
         val category: TextView = itemView.findViewById(R.id.category)
         val price: TextView = itemView.findViewById(R.id.price)
         val btnMarkComplete: Button = itemView.findViewById(R.id.btnPesananSelesai)
+        val btnSetting: ImageButton = itemView.findViewById(R.id.ibSetting)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +44,11 @@ class SellerAdapter(var items: List<ProductRequest>) :
             item.isCompleted = true
             notifyDataSetChanged()
         }
-
+        if (item.isForSale) {
+            holder.btnSetting.visibility = View.VISIBLE
+        } else {
+            holder.btnSetting.visibility = View.GONE
+        }
         // Load image using Glide
        /* Glide.with(holder.itemView.context)
             .load(item.productImage[0]) // Load image from URL

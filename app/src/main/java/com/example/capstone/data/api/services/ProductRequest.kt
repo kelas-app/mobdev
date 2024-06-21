@@ -12,7 +12,22 @@ data class ProductRequest(
     val productImage: List<String>,
     val isVisible: Boolean,
     var isCompleted: Boolean,
-    val sellerId: String
+    val sellerId: String,
+    var isForSale: Boolean,
+    var _id: String
+)
+
+data class ProductRequestWithId(
+    val name: String,
+    val description: String,
+    val price: Float,
+    val category: String,
+    val productImage: List<String>,  // Assuming productImage is a list of String (URLs)
+    val isVisible: Boolean,
+    var isCompleted: Boolean,
+    val sellerId: String,  // Assuming sellerId is a String
+    val isForSale: Boolean,
+    val productId: String
 )
 
 data class AddProduct(

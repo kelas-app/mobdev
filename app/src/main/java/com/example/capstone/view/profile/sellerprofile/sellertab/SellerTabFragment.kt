@@ -63,13 +63,18 @@ class SellerTabFragment : Fragment() {
                         productImage = item.productImage,
                         isVisible = item.isVisible,
                         isCompleted = item.isCompleted,
-                        sellerId = item.sellerId
+                        sellerId = item.sellerId,
+                        isForSale = true,
+                        _id = item.productId
                     )
+
                 }, showCompleted = false)
+
             }
         }
 
         dijualButton.setOnClickListener {
+
             sellerViewModel.dashboardData.value?.let {
                 sellerAdapter.setItems(it.dijual.map { item ->
                     ProductRequest(
@@ -80,7 +85,9 @@ class SellerTabFragment : Fragment() {
                         productImage = item.productImage,
                         isVisible = item.isVisible,
                         isCompleted = item.isCompleted,
-                        sellerId = item.sellerId
+                        sellerId = item.sellerId,
+                        isForSale = true,
+                        _id = "item.productId"
                     )
                 }, showCompleted = false)
             }
@@ -96,7 +103,9 @@ class SellerTabFragment : Fragment() {
                         productImage = emptyList(), // Adjust this if your data structure differs
                         isVisible = true, // Assuming this field exists, adjust if necessary
                         isCompleted = true, // Assuming all items in `selesai` are completed
-                        sellerId = item.sellerId // Assuming this field exists
+                        sellerId = item.sellerId, // Assuming this field exists
+                        isForSale = false,
+                        _id = ""
                     )
                 }, showCompleted = true)
             }
@@ -113,7 +122,9 @@ class SellerTabFragment : Fragment() {
                         productImage = emptyList(), // Adjust this if your data structure differs
                         isVisible = true, // Assuming this field exists, adjust if necessary
                         isCompleted = false, // Assuming all items in `diproses` are not completed
-                        sellerId = item.sellerId // Assuming this field exists
+                        sellerId = item.sellerId, // Assuming this field exists
+                        isForSale = false,
+                        _id = item.productId
                     )
                 }, showCompleted = true)
             }
@@ -145,7 +156,10 @@ class SellerTabFragment : Fragment() {
                         productImage = detail.productImage,
                         isVisible = detail.isVisible,
                         isCompleted = detail.isCompleted,
-                        sellerId = detail.sellerId
+                        sellerId = detail.sellerId,
+                        isForSale = false,
+                        _id = detail.id
+
                     )
                 }, showCompleted = true)
             }

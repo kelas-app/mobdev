@@ -108,7 +108,18 @@ class ProductRepository private constructor(
 
         return productApiService.uploadNewProduct(namePart, descriptionPart, pricePart, categoryPart, imagePart)
     }
-    
+    suspend fun editNewProduct(id: String,name: String, description: String, price: Float, category: String, productImage: File): UploadNewProductResponse {
+        val namePart = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+        val descriptionPart = RequestBody.create("text/plain".toMediaTypeOrNull(), description)
+        val pricePart = RequestBody.create("text/plain".toMediaTypeOrNull(), price.toString())
+        val categoryPart = RequestBody.create("text/plain".toMediaTypeOrNull(), category)
+        val imagePart = MultipartBody.Part.createFormData("productImage", productImage.name, RequestBody.create("image/*".toMediaTypeOrNull(), productImage))
+
+        // Get productId from somewhere, possibly from ViewModel or Activity
+        val productId = id
+
+        return productApiService.updateNewProduct(productId, namePart, descriptionPart, pricePart, categoryPart, imagePart)
+    }
     fun getAllChat (productId:String): Flow<Result<List<ConversationsResponseItem>>> = flow {
         if (userPreference.isTokenExpired()) {
             logout()

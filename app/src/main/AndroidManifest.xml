@@ -36,6 +36,7 @@
             android:exported="false" />
 
         <activity android:name=".view.profile.sellerprofile.sellertab.addproduct.ProductActivity" />
+        <activity android:name=".view.profile.sellerprofile.sellertab.editproduct.EditProductActivity" />
 
         <activity android:name=".view.profile.editprofile.EditProfileActivity" />
 

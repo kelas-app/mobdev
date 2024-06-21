@@ -37,7 +37,7 @@ class KeranjangAdapter(
 
         fun bind(data: GetDetailProductResponse) {
             textViewTitle.text = data.name
-            textViewPrice.text = context.getString(R.string.rupiah, data.price.toInt())
+            textViewPrice.text = context.getString(R.string.rupiah, data.price)
 
             // Load the image using Glide or any other image loading library
             if (data.productImage.isNotEmpty()) {

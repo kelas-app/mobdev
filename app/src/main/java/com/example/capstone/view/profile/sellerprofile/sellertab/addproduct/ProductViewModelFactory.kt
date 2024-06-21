@@ -5,12 +5,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.view.cart.keranjang.KeranjangViewModel
 import com.example.capstone.view.cart.riwayat.OrderViewModel
+import com.example.capstone.view.profile.sellerprofile.sellertab.editproduct.EditProductViewModel
 
 class ProductViewModelFactory(private val productRepository: ProductRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ProductViewModel(productRepository) as T
+        }
+        if (modelClass.isAssignableFrom(EditProductViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return EditProductViewModel(productRepository) as T
         }
         if (modelClass.isAssignableFrom(OrderViewModel::class.java)) {
             return OrderViewModel(productRepository) as T

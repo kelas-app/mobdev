@@ -1,9 +1,10 @@
 package com.example.capstone.data.api.response
 
 import com.example.capstone.data.api.services.ProductRequest
+import com.example.capstone.data.api.services.ProductRequestWithId
 
 data class DashboardResponse(
-    val dijual: List<ProductRequest>,
+    val dijual: List<ProductRequestWithId>,
     val diproses: List<ProcessRequest>,
     val selesai: List<ProcessRequest>
 )

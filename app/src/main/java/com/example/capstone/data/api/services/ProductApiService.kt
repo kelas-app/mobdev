@@ -19,6 +19,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Header
+import retrofit2.http.PUT
 
 interface ProductApiService {
     @POST("products/recommend")
@@ -51,8 +52,10 @@ interface ProductApiService {
     suspend fun createConversations(
         @Body request: ConversationsRequest
     ): List<ConversationsResponseItem>
+
     @GET("orders")
     suspend fun getOrders(@Header("Authorization") token: String): Response<List<Order>>
+
     @Multipart
     @POST("products")
     suspend fun uploadNewProduct(
@@ -61,6 +64,17 @@ interface ProductApiService {
       @Part("price") price: RequestBody,
       @Part("category") category: RequestBody,
       @Part productImage: MultipartBody.Part
+    ): UploadNewProductResponse
+
+    @Multipart
+    @PUT("products/{productId}")
+    suspend fun updateNewProduct(
+        @Path("productId") id: String,
+        @Part("name") name: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("price") price: RequestBody,
+        @Part("category") category: RequestBody,
+        @Part productImage: MultipartBody.Part
     ): UploadNewProductResponse
 
     @GET("orders/dashboard")
