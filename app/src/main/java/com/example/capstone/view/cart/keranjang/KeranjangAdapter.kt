@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,9 @@ import com.example.capstone.data.api.response.GetDetailProductResponse
 class KeranjangAdapter(
     private val context: Context,
     private val dataList: List<GetDetailProductResponse>
+
 ) : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_item_cart, parent, false)
@@ -23,6 +26,7 @@ class KeranjangAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = dataList[position]
+
         holder.bind(data)
     }
 
@@ -34,10 +38,13 @@ class KeranjangAdapter(
         private val textViewTitle: TextView = itemView.findViewById(R.id.tvProductTitle)
         private val textViewPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
         private val imageViewProduct: ImageView = itemView.findViewById(R.id.ivProductImage)
+        private val removeButton: ImageButton = itemView.findViewById(R.id.btnRemove) // Use ImageButton instead of Button
 
         fun bind(data: GetDetailProductResponse) {
             textViewTitle.text = data.name
             textViewPrice.text = context.getString(R.string.rupiah, data.price)
+            removeButton.visibility = View.INVISIBLE
+
 
             // Load the image using Glide or any other image loading library
             if (data.productImage.isNotEmpty()) {

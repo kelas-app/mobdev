@@ -36,7 +36,7 @@ class SellerAdapter(var items: List<ProductRequest>) :
         val item = items[position]
         holder.title.text = item.name
         holder.category.text = item.category
-        holder.price.text = item.price.toString()
+        holder.price.text = String.format(holder.itemView.context.getString(R.string.rupiah), item.price.toInt())
 
         holder.btnMarkComplete.visibility = if (!showCompleted || item.isCompleted) View.GONE else View.VISIBLE
 

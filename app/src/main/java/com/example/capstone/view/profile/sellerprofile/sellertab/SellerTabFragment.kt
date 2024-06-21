@@ -65,7 +65,7 @@ class SellerTabFragment : Fragment() {
                         isCompleted = item.isCompleted,
                         sellerId = item.sellerId,
                         isForSale = true,
-                        _id = item.productId
+                        _id = "item.productId"
                     )
 
                 }, showCompleted = false)
@@ -86,7 +86,7 @@ class SellerTabFragment : Fragment() {
                         isVisible = item.isVisible,
                         isCompleted = item.isCompleted,
                         sellerId = item.sellerId,
-                        isForSale = true,
+                        isForSale = false,
                         _id = "item.productId"
                     )
                 }, showCompleted = false)
@@ -124,7 +124,7 @@ class SellerTabFragment : Fragment() {
                         isCompleted = false, // Assuming all items in `diproses` are not completed
                         sellerId = item.sellerId, // Assuming this field exists
                         isForSale = false,
-                        _id = item.productId
+                        _id = "item.productId"
                     )
                 }, showCompleted = true)
             }
