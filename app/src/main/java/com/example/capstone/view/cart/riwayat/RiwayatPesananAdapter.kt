@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone.R
+import com.example.capstone.data.api.response.Order
 
-class RiwayatPesananAdapter(private val context: Context, private val dataList: List<String>) :
+class RiwayatPesananAdapter(private val context: Context, private var dataList: List<Order>) :
     RecyclerView.Adapter<RiwayatPesananAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,9 +29,14 @@ class RiwayatPesananAdapter(private val context: Context, private val dataList: 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewTitle: TextView = itemView.findViewById(R.id.tvProductTitle) // Sesuaikan dengan ID yang ada di item_riwayat_pesanan.xml
 
-        fun bind(data: String) {
-            textViewTitle.text = data
+        fun bind(data: Order) {
+            textViewTitle.text = "${data.productId} - ${data.totalPrice}" // Modify as needed
             // Implementasi binding data lainnya di sini jika diperlukan
         }
+    }
+
+    fun updateData(newDataList: List<Order>) {
+        dataList = newDataList
+        notifyDataSetChanged()
     }
 }

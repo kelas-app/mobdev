@@ -9,6 +9,7 @@ import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.data.repository.UserRepository
 import com.example.capstone.di.Injection
 import com.example.capstone.view.cart.keranjang.KeranjangViewModel
+import com.example.capstone.view.cart.riwayat.OrderViewModel
 import com.example.capstone.view.chat.ChatViewModel
 import com.example.capstone.view.home.DetailProductBaruViewModel
 import com.example.capstone.view.home.HomeViewModel
@@ -34,6 +35,10 @@ class ViewModelFactory (private val userRepository: UserRepository , private val
 
             modelClass.isAssignableFrom(ChatViewModel::class.java) -> {
                 ChatViewModel(productRepository, userPreference) as T
+            }
+
+            modelClass.isAssignableFrom(OrderViewModel::class.java) -> {
+                OrderViewModel(productRepository) as T
             }
 
             modelClass.isAssignableFrom(KeranjangViewModel::class.java) -> KeranjangViewModel(productRepository) as T

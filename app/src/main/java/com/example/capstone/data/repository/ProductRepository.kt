@@ -22,7 +22,7 @@ import java.io.File
 
 class ProductRepository private constructor(
     private val productApiService: ProductApiService,
-    private val userPreference: UserPreference,){
+    val userPreference: UserPreference,){
     companion object{
         @Volatile
         private var instance: ProductRepository? = null
@@ -35,6 +35,7 @@ class ProductRepository private constructor(
     /*suspend fun getAllProducts(): List<GetAllProductResponseItem> {
         return productApiService.getAllProducts()
     }*/
+    suspend fun getOrders(token: String) = productApiService.getOrders(token)
 
     suspend fun getCartItems(): List<CartItem> = withContext(Dispatchers.IO) {
         productApiService.getCartItems()

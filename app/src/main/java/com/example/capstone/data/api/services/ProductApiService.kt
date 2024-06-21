@@ -12,9 +12,13 @@ import retrofit2.http.Multipart
 import retrofit2.http.Part
 import retrofit2.http.Path
 import com.example.capstone.data.api.response.DashboardResponse
+import com.example.capstone.data.api.response.Order
 import com.example.capstone.data.api.response.UploadNewProductResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.http.Header
 
 interface ProductApiService {
     @POST("products/recommend")
@@ -47,7 +51,8 @@ interface ProductApiService {
     suspend fun createConversations(
         @Body request: ConversationsRequest
     ): List<ConversationsResponseItem>
-
+    @GET("orders")
+    suspend fun getOrders(@Header("Authorization") token: String): Response<List<Order>>
     @Multipart
     @POST("products")
     suspend fun uploadNewProduct(
