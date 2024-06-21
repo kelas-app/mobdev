@@ -1,9 +1,8 @@
 package com.example.capstone.data.api.services
 
+import com.example.capstone.data.api.response.CartItem
 import com.example.capstone.data.api.response.ConversationsResponseItem
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
-import com.example.capstone.data.api.response.GetCategoryProductResponse
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
 import retrofit2.http.Body
@@ -23,6 +22,9 @@ interface ProductApiService {
         @Body request: ProductRequestRecommend
     ): List<GetAllProductResponseItem>
 
+    @GET("cart/view")
+    suspend fun getCartItems(): List<CartItem>
+
     @GET("products/{id}")
     suspend fun detailProduct(
         @Path("id") id: String
@@ -34,7 +36,7 @@ interface ProductApiService {
     ): List<GetCategoryProductResponseItem>
 
     @GET("products/")
-    suspend fun getAllNewProducts(): List<GetAllProductNewResponseItem>
+    suspend fun getAllNewProducts(): List<GetAllProductResponseItem>
 
     @GET("conversations/{userId}")
     suspend fun getAllChat(

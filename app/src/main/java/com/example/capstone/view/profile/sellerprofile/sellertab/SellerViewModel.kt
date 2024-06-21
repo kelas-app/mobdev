@@ -6,32 +6,30 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.capstone.data.api.response.GetAllProductResponseItem
-import com.example.capstone.data.api.services.ProductRequest
-import com.example.capstone.data.pref.UserPreference
-import com.example.capstone.data.pref.dataStore
+import com.example.capstone.data.api.response.DashboardResponse
+import com.example.capstone.data.api.response.GetDetailProductResponse
+import com.example.capstone.data.api.services.ProductApiService
+import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.di.Injection
 import kotlinx.coroutines.launch
 
 class SellerViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val productRepository = Injection.provideProductRepository(application.applicationContext)
+    private val productRepository: ProductRepository = Injection.provideProductRepository(application)
 
-    private val _sellerItems = MutableLiveData<List<ProductRequest>>()
+    private val _dashboardData = MutableLiveData<DashboardResponse>()
+    val dashboardData: LiveData<DashboardResponse>
+        get() = _dashboardData
 
-    val sellerItems: LiveData<List<ProductRequest>>
-        get() = _sellerItems
+    private val _productDetails = MutableLiveData<List<GetDetailProductResponse>>()
+    val productDetails: LiveData<List<GetDetailProductResponse>>
+        get() = _productDetails
 
-    init {
-        loadDashboardItems()
-    }
-
-    private fun loadDashboardItems() {
+    fun loadDashboardData() {
         viewModelScope.launch {
             try {
-                val dashboardData = productRepository.getDashboardData()
-                _sellerItems.value = dashboardData.dijual // Default to showing "dijual"
-                Log.d("SellerViewModel", "Fetched dashboard data")
+                val dashboardResponse = productRepository.getDashboardData()
+                _dashboardData.value = dashboardResponse
             } catch (e: Exception) {
                 e.printStackTrace()
                 Log.e("SellerViewModel", "Error fetching dashboard data: ${e.message}")
@@ -39,49 +37,16 @@ class SellerViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun showDijualItems() {
+    fun loadProductDetails(productIds: List<String>) {
         viewModelScope.launch {
             try {
-                val dashboardData = productRepository.getDashboardData()
-                _sellerItems.value = dashboardData.dijual
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Log.e("SellerViewModel", "Error fetching dijual items: ${e.message}")
-            }
-        }
-    }
-
-    fun showDiprosesItems() {
-        viewModelScope.launch {
-            try {
-                val dashboardData = productRepository.getDashboardData()
-                _sellerItems.value = dashboardData.diproses.map {
-                    ProductRequest(
-                        name = "Order ID: ${it._id}",
-                        description = "Total Price: ${it.totalPrice}",
-                        price = it.totalPrice,
-                        category = "Order Status: ${it.status}",
-                        productImage = emptyList(),
-                        isVisible = true,
-                        isCompleted = it.status == "Selesai",
-                        sellerId = it.sellerId
-                    )
+                val details = productIds.map { productId ->
+                    productRepository.getProductInfo(productId)
                 }
+                _productDetails.value = details
             } catch (e: Exception) {
                 e.printStackTrace()
-                Log.e("SellerViewModel", "Error fetching diproses items: ${e.message}")
-            }
-        }
-    }
-
-    fun showSelesaiItems() {
-        viewModelScope.launch {
-            try {
-                val dashboardData = productRepository.getDashboardData()
-                _sellerItems.value = dashboardData.selesai
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Log.e("SellerViewModel", "Error fetching selesai items: ${e.message}")
+                Log.e("SellerViewModel", "Error fetching product details: ${e.message}")
             }
         }
     }

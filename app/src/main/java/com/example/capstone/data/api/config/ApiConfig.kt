@@ -12,6 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+var BaseUrl: String = "https://kelas-backend-app-igzsenohlq-et.a.run.app/api/"
+//var BaseUrl: String = "http://161.97.109.65:3000/api/"
+
 object ApiConfig {
 
     fun getAuthApiService(): AuthApiService{
@@ -21,7 +24,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
+            .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -46,7 +49,7 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/")
+            .baseUrl(BaseUrl)
 
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
@@ -69,7 +72,7 @@ object ApiConfig {
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://kelas-backend-app-igzsenohlq-et.a.run.app/api/") // Sesuaikan dengan URL API untuk edit profil
+            .baseUrl(BaseUrl) // Sesuaikan dengan URL API untuk edit profil
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

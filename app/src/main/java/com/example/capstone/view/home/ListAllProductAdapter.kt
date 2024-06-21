@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.capstone.R
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
+import com.example.capstone.data.api.response.GetAllProductResponseItem
 
-class ListAllProductAdapter : ListAdapter<GetAllProductNewResponseItem, ListAllProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
+class ListAllProductAdapter : ListAdapter<GetAllProductResponseItem, ListAllProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
 
     val TAG = "ListAllProductAdapter"
 
@@ -51,12 +51,12 @@ class ListAllProductAdapter : ListAdapter<GetAllProductNewResponseItem, ListAllP
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GetAllProductNewResponseItem>() {
-            override fun areItemsTheSame(oldItem: GetAllProductNewResponseItem, newItem: GetAllProductNewResponseItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GetAllProductResponseItem>() {
+            override fun areItemsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: GetAllProductNewResponseItem, newItem: GetAllProductNewResponseItem): Boolean {
+            override fun areContentsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
                 return oldItem.id == newItem.id
             }
         }

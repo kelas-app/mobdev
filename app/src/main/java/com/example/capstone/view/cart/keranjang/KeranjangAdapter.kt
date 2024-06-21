@@ -4,12 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.capstone.R
+import com.example.capstone.data.api.response.GetDetailProductResponse
 
-class KeranjangAdapter(private val context: Context, private val dataList: List<String>) :
-    RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
+class KeranjangAdapter(
+    private val context: Context,
+    private val dataList: List<GetDetailProductResponse>
+) : RecyclerView.Adapter<KeranjangAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_item_cart, parent, false)
@@ -26,11 +31,23 @@ class KeranjangAdapter(private val context: Context, private val dataList: List<
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewTitle: TextView = itemView.findViewById(R.id.tvProductTitle) // Sesuaikan dengan ID yang ada di item_keranjang.xml
+        private val textViewTitle: TextView = itemView.findViewById(R.id.tvProductTitle)
+        private val textViewPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
+        private val imageViewProduct: ImageView = itemView.findViewById(R.id.ivProductImage)
 
-        fun bind(data: String) {
-            textViewTitle.text = data
-            // Implementasi binding data lainnya di sini jika diperlukan
+        fun bind(data: GetDetailProductResponse) {
+            textViewTitle.text = data.name
+            textViewPrice.text = context.getString(R.string.rupiah, data.price.toInt())
+
+            // Load the image using Glide or any other image loading library
+            if (data.productImage.isNotEmpty()) {
+                Glide.with(context)
+                    .load(data.productImage[0])
+                    .placeholder(R.drawable.sample_product_image)
+                    .into(imageViewProduct)
+            } else {
+                imageViewProduct.setImageResource(R.drawable.sample_product_image)
+            }
         }
     }
 }

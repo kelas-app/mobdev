@@ -23,6 +23,8 @@ data class AddProduct(
     val productImage: File
 )
 
+
+
 /*
 data class SellerItem(
     val title: String,

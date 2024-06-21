@@ -5,7 +5,7 @@ import com.example.capstone.data.api.services.ProductRequest
 data class DashboardResponse(
     val dijual: List<ProductRequest>,
     val diproses: List<ProcessRequest>,
-    val selesai: List<ProductRequest>
+    val selesai: List<ProcessRequest>
 )
 
 data class ProcessRequest(
