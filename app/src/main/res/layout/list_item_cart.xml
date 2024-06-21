@@ -51,6 +51,7 @@
     </LinearLayout>
 
     <TextView
+        android:visibility="gone"
         style="@style/Bd1"
         android:id="@+id/tvStatus"
         android:layout_width="90dp"
@@ -66,6 +67,13 @@
         android:text="@string/in_stock"
         android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/btnOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/P1"
+        android:textColor="@color/C6"
+        android:text="@string/order"/>
     <ImageButton
         android:id="@+id/btnRemove"
         android:layout_width="24dp"

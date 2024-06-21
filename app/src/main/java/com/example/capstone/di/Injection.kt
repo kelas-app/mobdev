@@ -7,6 +7,7 @@ import com.example.capstone.data.pref.dataStore
 import com.example.capstone.data.repository.ProductRepository
 import com.example.capstone.data.repository.UserRepository
 import com.example.capstone.data.repository.EditProfileRepository
+import com.example.capstone.data.repository.OrderRepository
 import com.example.capstone.di.factory.ViewModelFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
@@ -26,20 +27,19 @@ object Injection {
         val apiService = ApiConfig.getAllProductService(user.token)
         return ProductRepository.getInstance(preference, apiService)
     }
-    fun provideOrderRepository(context: Context): ProductRepository {
-        val preference = UserPreference.getInstance(context.dataStore)
-        val user = runBlocking { preference.getSession().first() }
-        val apiService = ApiConfig.getOrderApiService(user.token)
-        return ProductRepository.getInstance(preference, apiService)
-    }
     fun provideViewModelFactory(context: Context): ViewModelFactory {
         val userRepository = provideUserRepository(context)
         val productRepository = provideProductRepository(context)
         val userPreference = UserPreference.getInstance(context.dataStore)
         val orderRepository = provideOrderRepository(context)
-        return ViewModelFactory(userRepository, productRepository, userPreference)
+        return ViewModelFactory(userRepository, productRepository, userPreference, orderRepository)
     }
-
+    fun provideOrderRepository(context: Context): OrderRepository { // Update return type to OrderRepository
+        val preference = UserPreference.getInstance(context.dataStore)
+        val user = runBlocking { preference.getSession().first() }
+        val apiService = ApiConfig.getOrderApiService(user.token)
+        return OrderRepository.getInstance(apiService)
+    }
     fun provideEditProfileRepository(context: Context): EditProfileRepository {
         val userPreference = UserPreference.getInstance(context.dataStore)
         val token = runBlocking {

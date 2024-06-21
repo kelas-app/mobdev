@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.capstone.data.api.response.Order
+import com.example.capstone.data.repository.OrderRepository
 import com.example.capstone.data.repository.ProductRepository
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
-class OrderViewModel(private val orderRepository: ProductRepository) : ViewModel() {
+class OrderViewModel(
+    private val orderRepository: ProductRepository
+) : ViewModel() {
 
     private val _orders = MutableLiveData<List<Order>>()
     val orders: LiveData<List<Order>> = _orders

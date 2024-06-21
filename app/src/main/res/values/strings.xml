@@ -147,4 +147,5 @@
     <string name="edit_produk">Edit Produk</string>
     <string name="edit_barang">Perbaharui Produk</string>
     <string name="phonenumber">Phone Number</string>
+    <string name="order">Order</string>
 </resources>

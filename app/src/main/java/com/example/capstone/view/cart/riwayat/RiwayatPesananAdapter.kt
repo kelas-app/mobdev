@@ -34,8 +34,11 @@ class RiwayatPesananAdapter(private val context: Context, private var dataList: 
         private val textViewPrice: TextView = itemView.findViewById(R.id.tvProductPrice) // Sesuaikan dengan ID yang ada di item_riwayat_pesanan.xml
         private val removeButton: ImageButton = itemView.findViewById(R.id.btnRemove) // Use ImageButton instead of Button
         private val textViewStatus: TextView = itemView.findViewById(R.id.tvStatus)
+        private val buttonOrder: Button = itemView.findViewById(R.id.btnOrder)
 
         fun bind(data: Order) {
+            textViewStatus.visibility = View.VISIBLE
+            buttonOrder.visibility = View.GONE
             textViewTitle.text = data.productId // Modify as needed
             textViewPrice.text = context.getString(R.string.rupiah, data.totalPrice)
             textViewStatus.text = data.status

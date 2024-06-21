@@ -3,6 +3,7 @@ package com.example.capstone.data.api.config
 import com.example.capstone.data.api.services.AuthApiService
 
 import com.example.capstone.data.api.services.EditProfileApiService
+import com.example.capstone.data.api.services.OrderService
 
 import com.example.capstone.data.api.services.ProductApiService
 import okhttp3.Interceptor
@@ -79,7 +80,7 @@ object ApiConfig {
         return retrofit.create(EditProfileApiService::class.java)
     }
 
-    fun getOrderApiService(token: String): ProductApiService {
+    fun getOrderApiService(token: String): OrderService { // Change return type to OrderService
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val authInterceptor = Interceptor { chain ->
             val req = chain.request()
@@ -101,7 +102,7 @@ object ApiConfig {
             .client(client)
             .build()
 
-        return retrofit.create(ProductApiService::class.java)
+        return retrofit.create(OrderService::class.java) // Return OrderService
     }
 
 }
