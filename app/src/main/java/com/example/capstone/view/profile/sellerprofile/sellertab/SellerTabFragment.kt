@@ -64,7 +64,7 @@ class SellerTabFragment : Fragment() {
                         isVisible = item.isVisible,
                         isCompleted = item.isCompleted,
                         sellerId = item.sellerId,
-                        isForSale = true,
+                        isForSale = false,
                         _id = "item.productId"
                     )
 
@@ -130,7 +130,7 @@ class SellerTabFragment : Fragment() {
             }
         }
 
-        // INI KALAU GET PRODUCT BY ID BISA SETELAH MASUK STATUS SELESAI/DIPROSES
+        // INI KALAU GET PRODUCT BY ID BISA SETELAH MASUK STATUS SELESAI/DIPROSES UNTUK NAMPILIN NAMA DAN HARGA
         /*selesaiButton.setOnClickListener {
             sellerViewModel.dashboardData.value?.let { data ->
                 val productIds = data.selesai.map { it.productId }
