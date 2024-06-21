@@ -4,18 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.capstone.data.api.response.GetAllProductNewResponse
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.repository.ProductRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 
 class HomeViewModel(private val productRepository: ProductRepository, private val userPreference: UserPreference): ViewModel() {
 
@@ -25,11 +20,11 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
     private val _categories = MutableLiveData<Result<List<GetCategoryProductResponseItem>>>()
     val categories: LiveData<Result<List<GetCategoryProductResponseItem>>> = _categories
 
-    private val _allProducts = MutableLiveData<Result<List<GetAllProductNewResponseItem>>>()
-    val allProducts: LiveData<Result<List<GetAllProductNewResponseItem>>> = _allProducts
+    private val _allProducts = MutableLiveData<Result<List<GetAllProductResponseItem>>>()
+    val allProducts: LiveData<Result<List<GetAllProductResponseItem>>> = _allProducts
 
     fun getProducts(userId: String): LiveData<Result<List<GetAllProductResponseItem>>> {
-        val resultFlow = productRepository.getProducts(userId)
+        val resultFlow = productRepository.getProductRecommendation(userId)
             .onStart { /* Show loading */ }
             .catch { exception -> _products.postValue(Result.failure(exception)) }
 
@@ -44,8 +39,8 @@ class HomeViewModel(private val productRepository: ProductRepository, private va
         return resultFlow.asLiveData()
     }
 
-    fun getAllNewProducts(): LiveData<Result<List<GetAllProductNewResponseItem>>>{
-        val resultFlow = productRepository.getAllNewProduct()
+    fun getAllNewProducts(): LiveData<Result<List<GetAllProductResponseItem>>>{
+        val resultFlow = productRepository.getAllProduct()
             .onStart {  }
             .catch { exception -> _allProducts.postValue(Result.failure(exception)) }
 

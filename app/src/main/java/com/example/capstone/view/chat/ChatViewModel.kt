@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.capstone.data.api.response.ConversationsResponseItem
-import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.services.ConversationsRequest
 import com.example.capstone.data.pref.UserPreference

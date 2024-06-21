@@ -51,7 +51,7 @@ class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAd
 
         holder.itemView.setOnClickListener {
             val intentDetail = Intent(holder.itemView.context,DetailProductBaruActivity::class.java).apply {
-                putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_ID, product._id)
+                putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_ID, product.id)
                 putExtra(DetailProductBaruActivity.EXTRA_PRODUCT_SELLER, product.sellerId)
             }
             holder.itemView.context.startActivity(intentDetail)
@@ -66,7 +66,7 @@ class ListProductsAdapter : ListAdapter<GetAllProductResponseItem,ListProductsAd
             }
 
             override fun areContentsTheSame(oldItem: GetAllProductResponseItem, newItem: GetAllProductResponseItem): Boolean {
-                return oldItem._id == newItem._id
+                return oldItem.id == newItem.id
             }
         }
     }

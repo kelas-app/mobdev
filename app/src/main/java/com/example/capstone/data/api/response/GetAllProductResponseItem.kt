@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class GetAllProductNewResponse(
 
 	@field:SerializedName("GetAllProductNewResponse")
-	val getAllProductNewResponse: List<GetAllProductNewResponseItem?>? = null
+	val getAllProductNewResponse: List<GetAllProductResponseItem?>? = null
 )
 
-data class GetAllProductNewResponseItem(
+data class GetAllProductResponseItem(
 
 	@field:SerializedName("sellerId")
 	val sellerId: String? = null,

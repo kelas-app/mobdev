@@ -3,7 +3,6 @@ package com.example.capstone.view.profile.sellerprofile.sellertab
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone.R
+import com.example.capstone.data.api.services.ProductRequest
 import com.example.capstone.view.profile.sellerprofile.sellertab.addproduct.ProductActivity
 
 class SellerTabFragment : Fragment() {
@@ -31,6 +30,7 @@ class SellerTabFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_profile_tab_seller, container, false)
         rvSellerProfile = view.findViewById(R.id.rvSellerProfile)
         dijualButton = view.findViewById(R.id.btnDijual)
@@ -43,35 +43,130 @@ class SellerTabFragment : Fragment() {
 
         // Setup RecyclerView
         sellerAdapter = SellerAdapter(emptyList())
-
         val itemWidth = resources.getDimension(R.dimen.item_width) // Define item_width in dimens.xml
         val numberOfColumns = calculateNoOfColumns(requireContext(), itemWidth)
-        rvSellerProfile.layoutManager = GridLayoutManager(requireContext(), numberOfColumns) // 2 columns
+        rvSellerProfile.layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
         rvSellerProfile.adapter = sellerAdapter
 
-        // Observe changes in seller items
-        sellerViewModel.sellerItems.observe(viewLifecycleOwner, Observer { items ->
-            items?.let {
-                Log.d("SellerTabFragment", "Observed items: $it")
-                // Update RecyclerView with new data
-                sellerAdapter.setItems(it, showCompleted = false)
-            }
-        })
+        // Load initial data
+        sellerViewModel.loadDashboardData()
 
-        dijualButton.setOnClickListener {
-            sellerViewModel.showDijualItems()
+        // Observe changes in dashboard data
+        sellerViewModel.dashboardData.observe(viewLifecycleOwner) { data ->
+            data?.let {
+                sellerAdapter.setItems(it.dijual.map { item ->
+                    ProductRequest(
+                        name = item.name,
+                        description = item.description,
+                        price = item.price,
+                        category = item.category,
+                        productImage = item.productImage,
+                        isVisible = item.isVisible,
+                        isCompleted = item.isCompleted,
+                        sellerId = item.sellerId,
+                        isForSale = false,
+                        _id = "item.productId"
+                    )
+
+                }, showCompleted = false)
+
+            }
         }
 
+        dijualButton.setOnClickListener {
+
+            sellerViewModel.dashboardData.value?.let {
+                sellerAdapter.setItems(it.dijual.map { item ->
+                    ProductRequest(
+                        name = item.name,
+                        description = item.description,
+                        price = item.price,
+                        category = item.category,
+                        productImage = item.productImage,
+                        isVisible = item.isVisible,
+                        isCompleted = item.isCompleted,
+                        sellerId = item.sellerId,
+                        isForSale = false,
+                        _id = "item.productId"
+                    )
+                }, showCompleted = false)
+            }
+        }
         selesaiButton.setOnClickListener {
-            sellerViewModel.showSelesaiItems()
+            sellerViewModel.dashboardData.value?.let { data ->
+                sellerAdapter.setItems(data.selesai.map { item ->
+                    ProductRequest(
+                        name = item.productId,
+                        description = "description", // You might want to adjust this based on actual data
+                        price = item.totalPrice,
+                        category = item.status,
+                        productImage = emptyList(), // Adjust this if your data structure differs
+                        isVisible = true, // Assuming this field exists, adjust if necessary
+                        isCompleted = true, // Assuming all items in `selesai` are completed
+                        sellerId = item.sellerId, // Assuming this field exists
+                        isForSale = false,
+                        _id = ""
+                    )
+                }, showCompleted = true)
+            }
         }
 
         btnProses.setOnClickListener {
-            sellerViewModel.showDiprosesItems()
+            sellerViewModel.dashboardData.value?.let { data ->
+                sellerAdapter.setItems(data.diproses.map { item ->
+                    ProductRequest(
+                        name = item.productId,
+                        description = "description", // You might want to adjust this based on actual data
+                        price = item.totalPrice.toFloat(),
+                        category = item.status,
+                        productImage = emptyList(), // Adjust this if your data structure differs
+                        isVisible = true, // Assuming this field exists, adjust if necessary
+                        isCompleted = false, // Assuming all items in `diproses` are not completed
+                        sellerId = item.sellerId, // Assuming this field exists
+                        isForSale = false,
+                        _id = "item.productId"
+                    )
+                }, showCompleted = true)
+            }
+        }
+
+        // INI KALAU GET PRODUCT BY ID BISA SETELAH MASUK STATUS SELESAI/DIPROSES UNTUK NAMPILIN NAMA DAN HARGA
+        /*selesaiButton.setOnClickListener {
+            sellerViewModel.dashboardData.value?.let { data ->
+                val productIds = data.selesai.map { it.productId }
+                sellerViewModel.loadProductDetails(productIds)
+            }
+        }
+
+        btnProses.setOnClickListener {
+            sellerViewModel.dashboardData.value?.let { data ->
+                val productIds = data.diproses.map { it.productId }
+                sellerViewModel.loadProductDetails(productIds)
+            }
+        }*/
+
+        sellerViewModel.productDetails.observe(viewLifecycleOwner) { details ->
+            details?.let {
+                sellerAdapter.setItems(it.map { detail ->
+                    ProductRequest(
+                        name = detail.name,
+                        description = detail.description,
+                        price = detail.price.toFloat(),
+                        category = detail.category,
+                        productImage = detail.productImage,
+                        isVisible = detail.isVisible,
+                        isCompleted = detail.isCompleted,
+                        sellerId = detail.sellerId,
+                        isForSale = false,
+                        _id = detail.id
+
+                    )
+                }, showCompleted = true)
+            }
         }
 
         btnJualBarang.setOnClickListener {
-            val context = requireContext() // Get the context from the Fragment
+            val context = requireContext()
             val intent = Intent(context, ProductActivity::class.java)
             startActivity(intent)
         }

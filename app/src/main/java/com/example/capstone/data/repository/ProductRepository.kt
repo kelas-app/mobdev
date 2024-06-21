@@ -1,7 +1,7 @@
 package com.example.capstone.data.repository
 
+import com.example.capstone.data.api.response.CartItem
 import com.example.capstone.data.api.response.ConversationsResponseItem
-import com.example.capstone.data.api.response.GetAllProductNewResponseItem
 import com.example.capstone.data.api.response.GetAllProductResponseItem
 import com.example.capstone.data.api.response.GetCategoryProductResponseItem
 import com.example.capstone.data.api.response.GetDetailProductResponse
@@ -11,8 +11,10 @@ import com.example.capstone.data.api.services.ConversationsRequest
 import com.example.capstone.data.api.services.ProductApiService
 import com.example.capstone.data.api.services.ProductRequestRecommend
 import com.example.capstone.data.pref.UserPreference
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -20,7 +22,7 @@ import java.io.File
 
 class ProductRepository private constructor(
     private val productApiService: ProductApiService,
-    private val userPreference: UserPreference,){
+    val userPreference: UserPreference,){
     companion object{
         @Volatile
         private var instance: ProductRepository? = null
@@ -33,8 +35,13 @@ class ProductRepository private constructor(
     /*suspend fun getAllProducts(): List<GetAllProductResponseItem> {
         return productApiService.getAllProducts()
     }*/
+    suspend fun getOrders(token: String) = productApiService.getOrders(token)
 
-    fun getProducts(userId: String): kotlinx.coroutines.flow.Flow<Result<List<GetAllProductResponseItem>>> = flow {
+    suspend fun getCartItems(): List<CartItem> = withContext(Dispatchers.IO) {
+        productApiService.getCartItems()
+    }
+
+    fun getProductRecommendation(userId: String): Flow<Result<List<GetAllProductResponseItem>>> = flow {
         if (userPreference.isTokenExpired()) {
             userPreference.logout()
             emit(Result.failure(Exception("Token expired")))
@@ -47,7 +54,9 @@ class ProductRepository private constructor(
             }
         }
     }
-
+    suspend fun getProductInfo(productId: String): GetDetailProductResponse {
+        return productApiService.detailProduct(productId)
+    }
     fun getProductDetails(productId:String): Flow<Result<GetDetailProductResponse>> = flow {
         if (userPreference.isTokenExpired()) {
             logout()
@@ -76,7 +85,7 @@ class ProductRepository private constructor(
         }
     }
 
-    fun getAllNewProduct(): Flow<Result<List<GetAllProductNewResponseItem>>> = flow {
+    fun getAllProduct(): Flow<Result<List<GetAllProductResponseItem>>> = flow {
         if (userPreference.isTokenExpired()) {
             logout()
             emit(Result.failure(Exception("Token expired")))
@@ -99,7 +108,18 @@ class ProductRepository private constructor(
 
         return productApiService.uploadNewProduct(namePart, descriptionPart, pricePart, categoryPart, imagePart)
     }
-    
+    suspend fun editNewProduct(id: String,name: String, description: String, price: Float, category: String, productImage: File): UploadNewProductResponse {
+        val namePart = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+        val descriptionPart = RequestBody.create("text/plain".toMediaTypeOrNull(), description)
+        val pricePart = RequestBody.create("text/plain".toMediaTypeOrNull(), price.toString())
+        val categoryPart = RequestBody.create("text/plain".toMediaTypeOrNull(), category)
+        val imagePart = MultipartBody.Part.createFormData("productImage", productImage.name, RequestBody.create("image/*".toMediaTypeOrNull(), productImage))
+
+        // Get productId from somewhere, possibly from ViewModel or Activity
+        val productId = id
+
+        return productApiService.updateNewProduct(productId, namePart, descriptionPart, pricePart, categoryPart, imagePart)
+    }
     fun getAllChat (productId:String): Flow<Result<List<ConversationsResponseItem>>> = flow {
         if (userPreference.isTokenExpired()) {
             logout()
@@ -131,7 +151,7 @@ class ProductRepository private constructor(
     suspend fun getDashboardData(): DashboardResponse {
         return productApiService.getDashboardData()
     }
-    
+
     suspend fun logout(){
         userPreference.logout()
     }
