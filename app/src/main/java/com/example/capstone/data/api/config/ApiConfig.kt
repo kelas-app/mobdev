@@ -1,5 +1,6 @@
 package com.example.capstone.data.api.config
 
+import com.example.capstone.BuildConfig
 import com.example.capstone.data.api.services.AuthApiService
 
 import com.example.capstone.data.api.services.EditProfileApiService
@@ -13,8 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-var BaseUrl: String = "https://kelas-backend-app-igzsenohlq-et.a.run.app/api/"
-//var BaseUrl: String = "http://161.97.109.65:3000/api/"
+var BaseUrl: String = BuildConfig.API_BASE_URL
 
 object ApiConfig {
 
