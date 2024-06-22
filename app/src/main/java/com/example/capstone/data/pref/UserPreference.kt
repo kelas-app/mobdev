@@ -91,7 +91,11 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
         }.first() // collect from flow value
         return currentTime > expirationTime
     }
-
+    suspend fun getToken(): String {
+        return dataStore.data.map { preferences ->
+            preferences[TOKEN_KEY] ?: ""
+        }.first()
+    }
 
     companion object{
         @Volatile
@@ -116,6 +120,8 @@ class UserPreference private constructor(private val dataStore: DataStore<androi
                 instance
             }
         }
+
+
     }
 
 }

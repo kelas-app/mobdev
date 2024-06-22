@@ -41,12 +41,12 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             else{
-                setupNavigation()
+                setupNavigation(user.role)
             }
         }
     }
 
-    private fun setupNavigation() {
+    private fun setupNavigation(role: String) {
         val bottomNavigation: BottomNavigationView = binding.bottomNavigation
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         //ini untuk menghubungkan fragment ke dalam activity
@@ -57,5 +57,11 @@ class MainActivity : AppCompatActivity() {
         )
         //setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigation.setupWithNavController(navController)
+
+        val menu = bottomNavigation.menu
+        menu.findItem(R.id.nav_profile).isVisible = role != "seller"
+        menu.findItem(R.id.nav_seller_profile).isVisible = role == "seller"
     }
+
+
 }

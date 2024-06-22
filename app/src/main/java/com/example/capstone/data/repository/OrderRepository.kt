@@ -10,7 +10,9 @@ class OrderRepository private constructor(private val apiService: OrderService) 
     suspend fun createOrder(orderRequest: OrderRequest): OrderResponse {
         return apiService.createOrder(orderRequest).await()
     }
-
+    suspend fun updateOrderStatus(orderId: String, status: Map<String, String>): OrderResponse {
+        return apiService.updateOrderStatus(orderId, status).await()
+    }
     companion object {
         @Volatile
         private var instance: OrderRepository? = null

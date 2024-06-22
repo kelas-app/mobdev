@@ -52,7 +52,7 @@ class ProfileFragment : Fragment() {
         profileViewModel.role.observe(viewLifecycleOwner) { role ->
             if (role == "seller") {
                 // Navigate to SellerProfileFragment if user is seller
-                navigateToSellerProfile()
+                //navigateToSellerProfile()
             }
         }
 
@@ -100,7 +100,7 @@ class ProfileFragment : Fragment() {
     }
     private fun navigateToSellerProfile() {
         // Navigasi menggunakan findNavController
-        findNavController().navigate(R.id.action_nav_profile_to_nav_seller_profile)
+        //findNavController().navigate(R.id.action_nav_profile_to_nav_seller_profile)
     }
     override fun onDestroyView() {
         super.onDestroyView()

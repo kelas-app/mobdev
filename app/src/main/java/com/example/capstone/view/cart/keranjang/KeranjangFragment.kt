@@ -38,7 +38,6 @@ class KeranjangFragment : Fragment() {
 
         viewModel.products.observe(viewLifecycleOwner) { productList ->
             recyclerViewKeranjang.adapter = KeranjangAdapter(requireContext(), productList) { product ->
-                // Handle Order button click
                 createOrder(product)
             }
         }

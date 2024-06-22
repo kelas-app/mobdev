@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class KeranjangViewModel(
     private val productRepository: ProductRepository,
-    private val orderRepository: OrderRepository // Add OrderRepository
+    private val orderRepository: OrderRepository
 ) : ViewModel() {
 
     private val _products = MutableLiveData<List<GetDetailProductResponse>>()
@@ -55,6 +55,17 @@ class KeranjangViewModel(
         viewModelScope.launch {
             try {
                 val response = orderRepository.createOrder(orderRequest)
+                _orderResponse.postValue(response)
+            } catch (e: Exception) {
+                // Handle exception
+            }
+        }
+    }
+
+    fun updateOrderStatus(orderId: String, status: String) {
+        viewModelScope.launch {
+            try {
+                val response = orderRepository.updateOrderStatus(orderId, mapOf("status" to status))
                 _orderResponse.postValue(response)
             } catch (e: Exception) {
                 // Handle exception

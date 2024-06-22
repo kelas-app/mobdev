@@ -3,6 +3,7 @@ package com.example.capstone.di
 import android.content.Context
 import com.example.capstone.data.api.config.ApiConfig
 import com.example.capstone.data.api.services.CartRequest
+import com.example.capstone.data.api.services.OrderService
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.pref.dataStore
 import com.example.capstone.data.repository.ProductRepository
@@ -38,10 +39,9 @@ object Injection {
         return ViewModelFactory(userRepository, productRepository, userPreference, orderRepository)
     }
 
-    fun provideOrderRepository(context: Context): OrderRepository { // Update return type to OrderRepository
-        val preference = UserPreference.getInstance(context.dataStore)
-        val user = runBlocking { preference.getSession().first() }
-        val apiService = ApiConfig.getOrderApiService(user.token)
+    private fun provideOrderRepository(context: Context): OrderRepository {
+        val token = runBlocking { UserPreference.getInstance(context.dataStore).getToken() }
+        val apiService: OrderService = ApiConfig.getOrderApiService(token)
         return OrderRepository.getInstance(apiService)
     }
     fun provideEditProfileRepository(context: Context): EditProfileRepository {
