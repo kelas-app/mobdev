@@ -19,29 +19,37 @@
       app:layout_constraintTop_toTopOf="parent">
 
    <TextView
-       android:layout_width="0dp"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_weight="1"
        android:fontFamily=""
        android:text="@string/AppTitle"
+       android:textColor="@color/C6"
        android:textSize="24sp"
-       android:textStyle="bold"
+       android:textStyle="bold" />
 
-       android:textColor="@color/C6"/>
-
-   <ImageView
-       android:layout_width="wrap_content"
+   <androidx.appcompat.widget.SearchView
+       android:id="@+id/searchBar"
+       android:layout_width="0dp"
        android:layout_height="match_parent"
-       android:src="@drawable/baseline_edit_notifications_24"
-       />
+       android:layout_marginHorizontal="16dp"
+       android:layout_weight="1"
+       android:backgroundTint="@color/C2"
+       android:clickable="true"
+       android:elevation="2dp"
+       android:focusable="true"
+       android:hint="@string/searchbar_hint"
+       android:outlineAmbientShadowColor="@color/black" />
+
+
   </LinearLayout>
 
-  <androidx.appcompat.widget.SearchView
-      android:id="@+id/searchBar"
-      android:layout_width="0dp"
+  <!--<androidx.appcompat.widget.SearchView
+      android:clickable="true"
+      android:id="@+id/searchBar2"
+      android:layout_width="match_parent"
       android:backgroundTint="@color/C2"
-      android:background="@drawable/rounded_shape"
       android:elevation="1dp"
+      android:focusable="true"
       android:outlineAmbientShadowColor="@color/black"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
@@ -50,7 +58,7 @@
       app:layout_constraintTop_toBottomOf="@+id/linearLayout"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent">
-  </androidx.appcompat.widget.SearchView>
+  </androidx.appcompat.widget.SearchView>-->
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/search"
@@ -62,7 +70,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       android:layout_marginTop="10dp"
-      app:layout_constraintTop_toBottomOf="@id/searchBar" />
+      app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
  <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -72,7 +80,7 @@
      android:layout_marginTop="20dp"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@id/searchBar">
+     app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
   <ImageView
       android:id="@+id/imageView2"
@@ -127,25 +135,24 @@
       android:id="@+id/text_categories"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/title_categories"
-      android:fontFamily="@font/futura_hv_bt"
       android:layout_marginTop="20dp"
-      android:layout_marginStart="8dp"
+      android:fontFamily="@font/futura_hv_bt"
+      android:text="@string/title_categories"
       android:textSize="16sp"
       android:textStyle="bold"
-      app:layout_constraintStart_toStartOf="@+id/offering"
+      app:layout_constraintStart_toStartOf="@+id/linearLayout"
       app:layout_constraintTop_toBottomOf="@+id/offering" />
 
   <HorizontalScrollView
       android:id="@+id/scrollcategories"
       android:layout_width="wrap_content"
-      android:scrollbars="none"
       android:layout_height="wrap_content"
+      android:layout_marginHorizontal="16dp"
       android:layout_marginTop="8dp"
-      android:layout_marginStart="16dp"
-      app:layout_constraintTop_toBottomOf="@id/text_categories"
+      android:scrollbars="none"
+      app:layout_constraintEnd_toEndOf="@+id/offering"
       app:layout_constraintStart_toStartOf="@+id/offering"
-      app:layout_constraintEnd_toEndOf="@+id/offering">
+      app:layout_constraintTop_toBottomOf="@id/text_categories">
 
    <LinearLayout
        android:layout_width="wrap_content"
@@ -159,56 +166,57 @@
         android:id="@+id/all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/all"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_background"
         android:backgroundTint="@color/P1"
-        android:layout_marginEnd="8dp" />
+        android:text="@string/all"
+        android:textColor="@color/black" />
+
     <Button
         android:id="@+id/recommendation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ForYou"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/bg_button"
-        android:layout_marginEnd="8dp" />
+        android:text="@string/ForYou"
+        android:textColor="@color/black" />
 
 
     <Button
         android:id="@+id/table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories2"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:text="@string/categories2"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/cupboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories3"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:text="@string/categories3"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/Bed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories4"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:text="@string/categories4"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/fan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories5"
-        android:textColor="@color/white"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_background"
-        android:layout_marginEnd="8dp"/>
+        android:text="@string/categories5"
+        android:textColor="@color/black" />
    </LinearLayout>
   </HorizontalScrollView>
 
@@ -225,17 +233,18 @@
       app:layout_constraintTop_toBottomOf="@+id/scrollcategories" />
 
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_home"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    tools:layout_height="1000dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="10dp"
-    app:layout_constraintEnd_toEndOf="@id/offering"
-    app:layout_constraintStart_toStartOf="@+id/offering"
-    app:layout_constraintTop_toBottomOf="@+id/title_recommendation"
-    tools:listitem="@layout/card_rv_home"/>
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_home"
+      android:layout_marginHorizontal="16dp"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/title_recommendation"
+      tools:layout_height="1000dp"
+      tools:listitem="@layout/card_rv_home" />
 
   <ProgressBar
       android:id="@+id/progressbar"

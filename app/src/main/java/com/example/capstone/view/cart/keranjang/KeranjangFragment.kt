@@ -57,7 +57,11 @@ class KeranjangFragment : Fragment() {
                 productId = product.id,
                 totalPrice = product.price.toString()
             )
-            viewModel.createOrder(orderRequest)
+            viewModel.createOrder(orderRequest).observe(viewLifecycleOwner) { orderResponse ->
+                if (orderResponse.status == "Proses") {
+                    viewModel.fetchCartItems()
+                }
+            }
         }
     }
 

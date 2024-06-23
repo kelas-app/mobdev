@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.capstone.R
+import com.example.capstone.data.api.response.Data
 import com.example.capstone.data.pref.UserPreference
 import com.example.capstone.data.pref.dataStore
 import com.example.capstone.databinding.FragmentProfileBinding
@@ -49,16 +51,13 @@ class ProfileFragment : Fragment() {
 
         val profileViewModel = ViewModelProvider(this, ProfileViewModelFactory(userPreference)).get(ProfileViewModel::class.java)
 
-        profileViewModel.role.observe(viewLifecycleOwner) { role ->
-            if (role == "seller") {
-                // Navigate to SellerProfileFragment if user is seller
-                //navigateToSellerProfile()
-            }
-        }
-
         profileViewModel.fetchUsername()
         profileViewModel.fetchUserRole()
         setUpView()
+
+        profileViewModel.userData.observe(viewLifecycleOwner, Observer { data ->
+            updateUI(data)
+        })
     }
 
     private fun setUpView() {
@@ -98,9 +97,12 @@ class ProfileFragment : Fragment() {
             userPreference.logout()
         }
     }
-    private fun navigateToSellerProfile() {
-        // Navigasi menggunakan findNavController
-        //findNavController().navigate(R.id.action_nav_profile_to_nav_seller_profile)
+    private fun updateUI(data: Data) {
+        binding.tvFirstName.text = data.firstname
+        binding.tvLastName.text = data.lastname
+        binding.tvUsername.text = data.username
+        binding.tvPhoneNumber.text = data.phone
+        binding.tvAddress.text = data.address
     }
     override fun onDestroyView() {
         super.onDestroyView()

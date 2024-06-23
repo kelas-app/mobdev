@@ -39,7 +39,7 @@ object Injection {
         return ViewModelFactory(userRepository, productRepository, userPreference, orderRepository)
     }
 
-    private fun provideOrderRepository(context: Context): OrderRepository {
+    fun provideOrderRepository(context: Context): OrderRepository {
         val token = runBlocking { UserPreference.getInstance(context.dataStore).getToken() }
         val apiService: OrderService = ApiConfig.getOrderApiService(token)
         return OrderRepository.getInstance(apiService)

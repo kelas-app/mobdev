@@ -12,8 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.capstone.R
 import com.example.capstone.data.api.services.ProductRequest
 
-class SellerAdapter(var items: List<ProductRequest>) :
-    RecyclerView.Adapter<SellerAdapter.ViewHolder>() {
+class SellerAdapter(
+    var items: List<ProductRequest>,
+    private val onUpdateStatus: (String, String) -> Unit
+) : RecyclerView.Adapter<SellerAdapter.ViewHolder>() {
     private var showCompleted = true
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,6 +24,8 @@ class SellerAdapter(var items: List<ProductRequest>) :
         val category: TextView = itemView.findViewById(R.id.category)
         val price: TextView = itemView.findViewById(R.id.price)
         val btnMarkComplete: Button = itemView.findViewById(R.id.btnPesananSelesai)
+        val btnCancel: ImageButton = itemView.findViewById(R.id.btnPesananBatal)
+
         val btnSetting: ImageButton = itemView.findViewById(R.id.ibSetting)
 
     }
@@ -39,11 +43,20 @@ class SellerAdapter(var items: List<ProductRequest>) :
         holder.price.text = String.format(holder.itemView.context.getString(R.string.rupiah), item.price.toInt())
 
         holder.btnMarkComplete.visibility = if (!showCompleted || item.isCompleted) View.GONE else View.VISIBLE
+        holder.btnCancel.visibility = if (!showCompleted || item.isCompleted) View.GONE else View.VISIBLE
 
         holder.btnMarkComplete.setOnClickListener {
             item.isCompleted = true
             notifyDataSetChanged()
         }
+
+        holder.btnMarkComplete.setOnClickListener {
+            onUpdateStatus(item._id, "Selesai")
+        }
+        holder.btnCancel.setOnClickListener {
+            onUpdateStatus(item._id, "Batal")
+        }
+
         if (item.isForSale) {
             holder.btnSetting.visibility = View.VISIBLE
         } else {

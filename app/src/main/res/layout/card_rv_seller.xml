@@ -84,25 +84,40 @@
             android:padding="6dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_setting"
-            card_view:layout_constraintBottom_toTopOf="@+id/btnBukaMaps"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
 
         <Button
             android:id="@+id/btnPesananSelesai"
             style="@style/Bd3"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_marginTop="4dp"
             android:backgroundTint="@color/P1"
             android:text="@string/selesai"
             android:textColor="@color/black"
+            android:visibility="visible"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/price" />
+
+        <ImageButton
+            android:id="@+id/btnPesananBatal"
+            style="@style/Bd3"
+            android:layout_width="27dp"
+            android:layout_height="25dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_remove"
+            android:backgroundTint="@color/red"
+            android:contentDescription="@string/batalkan_pesanan"
+            android:scaleType="fitCenter"
+            android:text="@string/batal"
+            android:textColor="@color/white"
+            android:visibility="visible"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/price"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintStart_toEndOf="@+id/btnPesananSelesai"
+            card_view:layout_constraintTop_toBottomOf="@+id/price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

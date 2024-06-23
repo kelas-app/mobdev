@@ -51,15 +51,17 @@ class KeranjangViewModel(
         }
     }
 
-    fun createOrder(orderRequest: OrderRequest) {
+    fun createOrder(orderRequest: OrderRequest): LiveData<OrderResponse> {
+        val result = MutableLiveData<OrderResponse>()
         viewModelScope.launch {
             try {
                 val response = orderRepository.createOrder(orderRequest)
-                _orderResponse.postValue(response)
+                result.postValue(response)
             } catch (e: Exception) {
                 // Handle exception
             }
         }
+        return result
     }
 
     fun updateOrderStatus(orderId: String, status: String) {

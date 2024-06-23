@@ -15,7 +15,7 @@ interface OrderService {
     suspend fun updateOrderStatus(
         @Path("orderId") orderId: String,
         @Body status: Map<String, String>
-    ): Call<OrderResponse>
+    ): OrderResponse
 
     @DELETE("orders/{orderId}")
     suspend fun deleteOrder(

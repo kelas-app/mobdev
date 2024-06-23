@@ -26,6 +26,7 @@ class SellerTabFragment : Fragment() {
     private lateinit var btnProses: Button
     private lateinit var btnJualBarang: Button
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,15 +39,21 @@ class SellerTabFragment : Fragment() {
         btnProses = view.findViewById(R.id.btnProses)
         btnJualBarang = view.findViewById(R.id.btnJualBarang)
 
+
         // Initialize ViewModel
         sellerViewModel = ViewModelProvider(this).get(SellerViewModel::class.java)
 
         // Setup RecyclerView
-        sellerAdapter = SellerAdapter(emptyList())
+        //sellerAdapter = SellerAdapter(emptyList())
+        sellerAdapter = SellerAdapter(emptyList()) { orderId, status ->
+            sellerViewModel.updateOrderStatus(orderId, status)
+        }
+
         val itemWidth = resources.getDimension(R.dimen.item_width) // Define item_width in dimens.xml
         val numberOfColumns = calculateNoOfColumns(requireContext(), itemWidth)
         rvSellerProfile.layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
         rvSellerProfile.adapter = sellerAdapter
+
 
         // Load initial data
         sellerViewModel.loadDashboardData()
@@ -65,7 +72,7 @@ class SellerTabFragment : Fragment() {
                         isCompleted = item.isCompleted,
                         sellerId = item.sellerId,
                         isForSale = false,
-                        _id = "item.productId"
+                        _id = ""
                     )
 
                 }, showCompleted = false)
@@ -74,7 +81,6 @@ class SellerTabFragment : Fragment() {
         }
 
         dijualButton.setOnClickListener {
-
             sellerViewModel.dashboardData.value?.let {
                 sellerAdapter.setItems(it.dijual.map { item ->
                     ProductRequest(
@@ -87,7 +93,7 @@ class SellerTabFragment : Fragment() {
                         isCompleted = item.isCompleted,
                         sellerId = item.sellerId,
                         isForSale = false,
-                        _id = "item.productId"
+                        _id = ""
                     )
                 }, showCompleted = false)
             }
@@ -124,7 +130,7 @@ class SellerTabFragment : Fragment() {
                         isCompleted = false, // Assuming all items in `diproses` are not completed
                         sellerId = item.sellerId, // Assuming this field exists
                         isForSale = false,
-                        _id = "item.productId"
+                        _id = item._id
                     )
                 }, showCompleted = true)
             }

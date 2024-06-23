@@ -148,4 +148,6 @@
     <string name="edit_barang">Perbaharui Produk</string>
     <string name="phonenumber">Phone Number</string>
     <string name="order">Order</string>
+    <string name="batal">Batalkan</string>
+    <string name="batalkan_pesanan">Batalkan Pesanan</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.example.capstone.view.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstone.R
 import com.example.capstone.data.api.response.SearchProductResponseItem
 import com.example.capstone.databinding.FragmentHomeBinding
 import com.example.capstone.di.factory.ViewModelFactory
 import com.example.capstone.view.login.LoginActivity
+import com.google.android.material.textfield.TextInputEditText
 
 
 class HomeFragment : Fragment() {
@@ -30,7 +35,6 @@ class HomeFragment : Fragment() {
     private lateinit var allProductAdapter: ListAllProductAdapter
 
     private lateinit var searchAdapter: SearchProductAdapter
-
     private val TAG = "HomeFragment"
 
     private val binding get() = _binding!!
@@ -169,7 +173,9 @@ class HomeFragment : Fragment() {
         showLoading(true)
         Log.d(TAG, "setUpRecyclerViewAllProducts called")
         allProductAdapter = ListAllProductAdapter()
-        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
+        val itemWidth = resources.getDimension(R.dimen.item_width) // Define item_width in dimens.xml
+        val numberOfColumns = calculateNoOfColumns(requireContext(), itemWidth)
+        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
         binding.rvHome.adapter = allProductAdapter
     }
 
@@ -177,7 +183,10 @@ class HomeFragment : Fragment() {
         showLoading(true)
         Log.d(TAG, "setUpRecyclerViewCategory called")
         categoryAdapter = ListProductCategoryAdapter()
-        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        val itemWidth = resources.getDimension(R.dimen.item_width) // Define item_width in dimens.xml
+        val numberOfColumns = calculateNoOfColumns(requireContext(), itemWidth)
+        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
         binding.rvHome.adapter = categoryAdapter
     }
 
@@ -185,7 +194,10 @@ class HomeFragment : Fragment() {
         showLoading(true)
         Log.d(TAG, "setUpRecyclerView called")
         adapter = ListProductsAdapter()
-        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        val itemWidth = resources.getDimension(R.dimen.item_width) // Define item_width in dimens.xml
+        val numberOfColumns = calculateNoOfColumns(requireContext(), itemWidth)
+        binding.rvHome.layoutManager = GridLayoutManager(requireContext(), numberOfColumns)
         binding.rvHome.adapter = adapter
     }
 
@@ -276,7 +288,11 @@ class HomeFragment : Fragment() {
             binding.progressbar.visibility = View.GONE
         }
     }
-
+    private fun calculateNoOfColumns(context: Context, itemWidth: Float): Int {
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidthPx = displayMetrics.widthPixels
+        return (screenWidthPx / itemWidth).toInt()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

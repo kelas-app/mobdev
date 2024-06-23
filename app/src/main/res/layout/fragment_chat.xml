@@ -27,10 +27,12 @@
     <com.google.android.material.search.SearchBar
         android:id="@+id/searchBar"
         android:layout_width="0dp"
+        android:backgroundTint="@color/white"
+        android:elevation="2dp"
+        android:autofillHints="name"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="25dp"
-        android:hint="@string/searchbar_hint"
         app:layout_constraintTop_toBottomOf="@+id/title_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
