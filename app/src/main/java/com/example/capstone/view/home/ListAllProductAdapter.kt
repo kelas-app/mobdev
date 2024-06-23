@@ -33,7 +33,9 @@ class ListAllProductAdapter : ListAdapter<GetAllProductResponseItem, ListAllProd
         val product = getItem(position)
         holder.title.text = product.name
         holder.category.text = product.category
-        holder.price.text = product.price?.toString() ?: "NA"
+        //holder.price.text = product.price?.toString() ?: "NA"
+        holder.price.text = String.format(holder.itemView.context.getString(R.string.rupiah), product.price)
+
 
         Glide.with(holder.itemView.context)
             .load(product.productImage?.get(0))

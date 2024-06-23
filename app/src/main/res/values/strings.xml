@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Capstone</string>
+    <string name="app_name" translatable="false">Kelas.</string>
     <string name="remove_item">"Click to remove item "</string>
     <string name="home">Home</string>
     <string name="chat">Chat</string>
@@ -8,8 +8,8 @@
     <string name="chairbackground" translatable="false">chairbackground</string>
     <string name="AppTitle" translatable="false">Kelas.</string>
     <string name="welcomeText">Welcome</string>
-    <string name="username">Username</string>
-    <string name="email">Email</string>
+    <string name="username" translatable="false">Username</string>
+    <string name="email" translatable="false">Email</string>
     <string name="no_telepon">Phone Number</string>
     <string name="password">Password</string>
     <string name="ForgotPass">Forgot Password?</string>
@@ -22,16 +22,16 @@
     <string name="keranjang">Cart</string>
     <string name="lamp_background" translatable="false">lamp_background</string>
     <string name="google_icon" translatable="false">google icon</string>
-    <string name="total_harga">Total Price</string>
+    <string name="total_harga">Total Cart</string>
     <string name="harga">Rp 0</string>
     <string name="beli_sekarang">Buy Now</string>
     <string name="riwayat_pesanan">History</string>
     <string name="procduct_image" translatable="false">sample product image</string>
     <string name="product_title" translatable="false">Product Title</string>
     <string name="in_stock">In Stock</string>
-    <string name="menjadi_penjual">Menjadi Penjual</string>
+    <string name="menjadi_penjual">Become Seller</string>
     <string name="alamat">Alamat</string>
-    <string name="OpenGoogleMaps">Buka di Google Maps</string>
+    <string name="OpenGoogleMaps">Open in Google Maps</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="firstname">Firstname</string>
@@ -39,11 +39,11 @@
     <string name="address">Address</string>
     <string name="setting_icon">Setting</string>
     <string name="alamat_sample" translatable="false">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
-    <string name="rupiah">Rp %,d</string>
+    <string name="rupiah" translatable="false">Rp %.2f</string>
 
     <!-- Title Untuk Fragment-->
     <string name="title_home">home\n</string>
-    <string name="title_chart">chart</string>
+    <string name="title_chart">cart</string>
     <string name="title_chat">chat</string>
     <string name="title_profile">profile</string>
     <!--    -->
@@ -58,53 +58,50 @@
     <string name="categories4">Bed</string>
     <string name="categories5">Fan</string>
     <string name="recommendation">Recommendation Product</string>
-    <string name="searchbar_hint">Search Here\n</string>
+    <string name="searchbar_hint">"Search Here "</string>
 
     <!--String Untuk Detail-->
-    <string name="title_detail"> Detail Product</string>
-    <string name="detail_goods"> Kursi Belajar</string>
-    <string name="description"> Lorem ipsum dolor sit amet consectetur. Pharetra aliquet mattis tincidunt vestibulum viverra. Proin tortor elit vitae et lacus accumsan. Feugiat sit ullamcorper eget sed id. Dignissim in orci vel varius… </string>
-    <string name="seller_name"> Laurence </string>
-    <string name="star"> 5.0 </string>
-    <string name="reviews"> l 102 Reviews </string>
+    <string name="title_detail">"Product Detail "</string>
+    <string name="description" translatable="false">"Lorem ipsum dolor sit amet consectetur. Pharetra aliquet mattis tincidunt vestibulum viverra. Proin tortor elit vitae et lacus accumsan. Feugiat sit ullamcorper eget sed id. Dignissim in orci vel varius… "</string>
+    <string name="seller_name" translatable="false">"Laurence "</string>
+    <string name="star" translatable="false">"5.0 "</string>
+    <string name="reviews" translatable="false">"  102 Reviews "</string>
     <string name="ask_seller"> Ask Seller</string>
-    <string name="title_review">Review</string>
+    <string name="title_review" translatable="false">Review</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="buy_now">Buy now</string>
-    <string name="title_detail_product">detail product</string>
-    <string name="price">Rp 350.000</string>
+    <string name="title_detail_product">product detail</string>
+    <string name="price" translatable="false">Rp 350.000</string>
     <string name="location">Location</string>
-    <string name="adress">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
+    <string name="adress" translatable="false">Jl. Nologaten, Ngaglik, Yogyakarta, Indonesia 55581</string>
     <string name="title_message">Message</string>
-    <string name="simpan">Simpan</string>
     <string name="NIK">NIK</string>
-    <string name="login_berhasil">Login Berhasil</string>
     <string name="passwordLogin">Password</string>
-    <string name="back">kembali</string>
-    <string name="profile_setting">Pengaturan Profil</string>
-    <string name="become_seller">Menjadi Penjual</string>
-    <string name="enter_nik">Masukkan NIK</string>
-    <string name="phone">No. Telepon</string>
+    <string name="back">back</string>
+    <string name="profile_setting">Profile Setting</string>
+    <string name="become_seller">become Seller</string>
+    <string name="enter_nik">Input NIK</string>
+    <string name="phone">Phone No.</string>
     <string name="title_seller_profile">seller profile</string>
     <string name="buyer_tab">Buyer</string>
     <string name="seller_tab">Seller</string>
-    <string name="selesai">Selesai</string>
-    <string name="diproses">Diproses</string>
-    <string name="dijual">Dijual</string>
-    <string name="jual_barang">Jual Barang</string>
-    <string name="tambah_produk">Tambah Produk</string>
-    <string name="harga_barang">Harga Barang</string>
-    <string name="deskripsi_barang">Deskripsi Barang</string>
-    <string name="jenis_barang">Jenis Barang</string>
-    <string name="nama_barang">Nama Barang</string>
-    <string name="tambah_gambar">Tambah Gambar</string>
+    <string name="selesai">Complete</string>
+    <string name="diproses">On Process</string>
+    <string name="dijual">For sale</string>
+    <string name="jual_barang">Sell Item</string>
+    <string name="tambah_produk">Add Product</string>
+    <string name="harga_barang">Item Price</string>
+    <string name="deskripsi_barang">Item Description</string>
+    <string name="jenis_barang">Item Type</string>
+    <string name="nama_barang">Item Name</string>
+    <string name="tambah_gambar">Add Image</string>
     
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -143,11 +140,14 @@
     <string name="all">All</string>
     <string name="recommendationn">Recommendation</string>
     <string name="ForYou">For You</string>
-    <string name="message">Untuk itu, apabila Anda termasuk dalam kriteria tersebut, saya mohon kesediaan Anda untuk berpartisipasi dalam mengisi survey ini. Tidak ada jawaban benar atau salah dalam pengerjaan ini, sehingga silahkan untuk mengisi kuesioner ini secara jujur dan apa adanya. Hasil atau data pengisian survey akan digunakan sebatas ruang lingkup penelitian dan akademik, sehingga segala tanggapan dalam kuesioner ini akan dijaga kerahasiaannya.\n</string>
-    <string name="edit_produk">Edit Produk</string>
-    <string name="edit_barang">Perbaharui Produk</string>
+    <string name="message" translatable="false">Untuk itu, apabila Anda termasuk dalam kriteria tersebut, saya mohon kesediaan Anda untuk berpartisipasi dalam mengisi survey ini. Tidak ada jawaban benar atau salah dalam pengerjaan ini, sehingga silahkan untuk mengisi kuesioner ini secara jujur dan apa adanya. Hasil atau data pengisian survey akan digunakan sebatas ruang lingkup penelitian dan akademik, sehingga segala tanggapan dalam kuesioner ini akan dijaga kerahasiaannya.\n</string>
+    <string name="edit_produk">Edit Product</string>
+    <string name="edit_barang">Update Product</string>
     <string name="phonenumber">Phone Number</string>
     <string name="order">Order</string>
-    <string name="batal">Batalkan</string>
-    <string name="batalkan_pesanan">Batalkan Pesanan</string>
+    <string name="batal">Cancel</string>
+    <string name="batalkan_pesanan">Cancel Order</string>
+    <string name="detail_goods">Learning Chair</string>
+    <string name="simpan">Save</string>
+    <string name="login_berhasil">Login Successful</string>
 </resources>

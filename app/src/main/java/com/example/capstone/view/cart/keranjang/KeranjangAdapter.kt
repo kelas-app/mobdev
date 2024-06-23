@@ -41,7 +41,7 @@ class KeranjangAdapter(
 
         fun bind(data: GetDetailProductResponse) {
             textViewTitle.text = data.name
-            textViewPrice.text = context.getString(R.string.rupiah, data.price)
+            textViewPrice.text = context.getString(R.string.rupiah, data.price.toDouble()) // Ensure price is a Double
 
             orderButton.setOnClickListener {
                 onOrderClick(data) // Invoke the click listener

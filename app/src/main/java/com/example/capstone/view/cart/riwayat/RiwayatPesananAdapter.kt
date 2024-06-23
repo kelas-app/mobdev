@@ -40,16 +40,18 @@ class RiwayatPesananAdapter(private val context: Context, private var dataList: 
             textViewStatus.visibility = View.VISIBLE
             buttonOrder.visibility = View.GONE
             textViewTitle.text = data.productId // Modify as needed
-            textViewPrice.text = context.getString(R.string.rupiah, data.totalPrice)
+            textViewPrice.text = context.getString(R.string.rupiah, data.totalPrice.toDouble())
             textViewStatus.text = data.status
             removeButton.visibility = View.INVISIBLE
             if (data.status == "Batal") {
                 //.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
                 textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red))
 
-            } else {
+            } else if (data.status == "Proses"){
                 // Reset background color if status is not "Batal"
                 textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.green))
+            }else{
+                textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.P1))
             }
             // Implementasi binding data lainnya di sini jika diperlukan
         }

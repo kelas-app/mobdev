@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
  <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="match_parent"
@@ -167,7 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background"
+        
         android:backgroundTint="@color/P1"
         android:text="@string/all"
         android:textColor="@color/black" />
@@ -177,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/P1"
         android:text="@string/ForYou"
         android:textColor="@color/black" />
 
@@ -187,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background"
+        android:backgroundTint="@color/P1"
         android:text="@string/categories2"
         android:textColor="@color/black" />
 
@@ -196,7 +197,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background"
+        android:backgroundTint="@color/P1"
         android:text="@string/categories3"
         android:textColor="@color/black" />
 
@@ -205,7 +206,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background"
+        android:backgroundTint="@color/P1"
         android:text="@string/categories4"
         android:textColor="@color/black" />
 
@@ -214,7 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background"
+        android:backgroundTint="@color/P1"
         android:text="@string/categories5"
         android:textColor="@color/black" />
    </LinearLayout>

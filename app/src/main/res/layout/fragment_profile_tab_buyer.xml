@@ -17,7 +17,6 @@
         android:elevation="4dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:backgroundTint="@color/C2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

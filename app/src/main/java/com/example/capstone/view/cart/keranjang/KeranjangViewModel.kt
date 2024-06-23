@@ -24,6 +24,8 @@ class KeranjangViewModel(
     private val _orderResponse = MutableLiveData<OrderResponse>()
     val orderResponse: LiveData<OrderResponse> = _orderResponse
 
+    private val _totalPrice = MutableLiveData<Double>()
+    val totalPrice: LiveData<Double> = _totalPrice
     fun fetchCartItems() {
         viewModelScope.launch {
             try {
@@ -48,7 +50,13 @@ class KeranjangViewModel(
                 }
             }
             _products.postValue(productList)
+            calculateTotalPrice(productList)
+
         }
+    }
+    private fun calculateTotalPrice(products: List<GetDetailProductResponse>) {
+        val total = products.sumOf { it.price }.toDouble()
+        _totalPrice.postValue(total)
     }
 
     fun createOrder(orderRequest: OrderRequest): LiveData<OrderResponse> {

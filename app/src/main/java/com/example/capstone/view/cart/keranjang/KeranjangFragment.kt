@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.capstone.R
 import com.example.capstone.data.api.response.GetDetailProductResponse
 import com.example.capstone.data.api.services.OrderRequest
 import com.example.capstone.data.pref.UserPreference
@@ -40,6 +41,9 @@ class KeranjangFragment : Fragment() {
             recyclerViewKeranjang.adapter = KeranjangAdapter(requireContext(), productList) { product ->
                 createOrder(product)
             }
+        }
+        viewModel.totalPrice.observe(viewLifecycleOwner) { totalPrice ->
+            binding.tvTotalHarga.text = getString(R.string.rupiah, totalPrice)
         }
 
         viewModel.fetchCartItems()

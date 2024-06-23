@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".view.profile.sellerprofile.sellertab.addproduct.ProductActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,13 +21,13 @@
             android:layout_height="48dp"
             android:elevation="1dp"
             android:background="@android:color/transparent"
-            android:tint="@color/C6"
             android:contentDescription="@string/back"
             android:src="@drawable/ic_back_arrow"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:padding="8dp"
-            android:layout_margin="12dp" />
+            android:layout_margin="12dp"
+            app:tint="@color/C6" />
 
         <LinearLayout
             android:id="@+id/top_navigation"
